@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "strict": true,
+    "declaration": true,
+    "noImplicitOverride": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "useUnknownInCatchVariables": false,
+  },
+  "include": [
+    "packages/*/src",
+  ]
+}
