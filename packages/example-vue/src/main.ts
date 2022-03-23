@@ -7,8 +7,8 @@ import App from './App.vue'
 async function initLog() {
 
   const host = 'http://localhost:1546'
-  const reportGetApi = `${host}/api/dac/v1/log/reportGet`
-  const reportPostApi = `${host}/api/dac/v1/log/report`
+  const reportGetApi = `${host}/log/report`
+  const reportPostApi = `${host}/log/report`
 
   const getCurrentRoute = () => {
     return {

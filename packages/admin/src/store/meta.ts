@@ -1,4 +1,5 @@
-import {defineStore} from "pinia";
+import { defineStore } from "pinia";
+import { IPage } from "../typings";
 
 
 const EVENT_TYPE = {
@@ -38,18 +39,48 @@ export const EVENT_MAP = Object.freeze({
 })
 
 
+const pageList: IPage[] = [
+  { id: '1', name: '首页', value: 'home', commonParams: [] },
+  { id: '2', name: '售卖列表页', value: 'sellList', commonParams: [] },
+]
+
+type MetaStoreStateType = {
+  fieldList: Array<any>,
+  pageList: IPage[],
+  EVENT_MAP: typeof EVENT_MAP,
+}
+
 export const useMetaStore = defineStore({
   id: 'meta',
-  state: () => {
+  state: (): MetaStoreStateType => {
     return {
       fieldList: [],
-      pageList: [{name: '首页', value: 'home'}, {name: '售卖列表页', value: 'sellList'}],
-      EVENT_MAP
+      pageList: pageList,
+      EVENT_MAP,
     }
   },
   actions: {
     fetchFiledList() {
       this.fieldList = []
+    },
+    async fetchPageDetail(id: string) {
+      return this.pageList.find(row => row.id === id)
+    },
+    async savePageDetail(row: IPage) {
+      const id = row.id
+      if (id) {
+        let idx = this.pageList.findIndex(row => row.id === id)
+        this.pageList.splice(idx, 1, row)
+      } else {
+        row.id = (+new Date()).toString()
+        this.pageList.push(row)
+      }
+    },
+    async removePage(row: IPage) {
+      const idx = this.pageList.indexOf(row)
+      if (idx > -1) {
+        this.pageList.splice(idx, 1)
+      }
     }
   }
 })
