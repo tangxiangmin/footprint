@@ -1,8 +1,9 @@
-import {TrackPageTask} from './trackTask'
+import { TrackPageTask } from './trackTask'
 
-export {VueLogPlugin, injectLogMixin} from "./vue"
+export { VueLogPlugin, injectLogMixin } from "./vue"
 
-export {getCurrentTrackTask} from './trackTask'
+export { getCurrentTrackTask } from './trackTask'
+export { EVENT_TYPE } from './report'
 
 type InitParams = {
   reportGetApi: string,

@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@footprint/sdk": "workspace:^1.0.0",
     "D": "^1.0.0",
+    "axios": "^0.26.1",
     "element-plus": "^2.1.4",
     "pinia": "^2.0.12",
     "vue": "^3.2.25",

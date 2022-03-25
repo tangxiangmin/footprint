@@ -4,7 +4,10 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCol: typeof import('element-plus/es')['ElCol']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
@@ -14,11 +17,17 @@ declare module 'vue' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
     ElOption: typeof import('element-plus/es')['ElOption']
+    ElOptionGroup: typeof import('element-plus/es')['ElOptionGroup']
+    ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTag: typeof import('element-plus/es')['ElTag']
+    EventTypeOptions: typeof import('./src/components/eventTypeOptions.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Loading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
 

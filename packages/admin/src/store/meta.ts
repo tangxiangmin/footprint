@@ -1,67 +1,42 @@
-import { defineStore } from "pinia";
-import { IPage } from "../typings";
-
-
-const EVENT_TYPE = {
-  pv: 1,
-  click: 2,
-  duration: 3,
-  exposure: 4,
-  logic: 5
-}
-
-export const EVENT_MAP = Object.freeze({
-  [EVENT_TYPE.pv]: {
-    name: '访问',
-    value: EVENT_TYPE.pv,
-    cls: 'success'
-  },
-  [EVENT_TYPE.click]: {
-    name: '点击',
-    value: EVENT_TYPE.click,
-    cls: 'danger'
-  },
-  [EVENT_TYPE.duration]: {
-    name: '页面停留',
-    value: EVENT_TYPE.duration,
-    cls: 'warning'
-  },
-  [EVENT_TYPE.exposure]: {
-    name: '曝光',
-    value: EVENT_TYPE.exposure,
-    cls: 'info'
-  },
-  [EVENT_TYPE.logic]: {
-    name: '逻辑埋点',
-    value: EVENT_TYPE.logic,
-    cls: ''
-  }
-})
-
-
-const pageList: IPage[] = [
-  { id: '1', name: '首页', value: 'home', commonParams: [] },
-  { id: '2', name: '售卖列表页', value: 'sellList', commonParams: [] },
-]
+import {defineStore} from "pinia";
+import {IPage, ITrackEvent, ITrackEventTemplate} from "../typings";
+import {getEventTemplateList, getPageList} from "../api/meta";
 
 type MetaStoreStateType = {
-  fieldList: Array<any>,
   pageList: IPage[],
-  EVENT_MAP: typeof EVENT_MAP,
+  eventTemplateList: ITrackEventTemplate[],
 }
 
 export const useMetaStore = defineStore({
   id: 'meta',
   state: (): MetaStoreStateType => {
     return {
-      fieldList: [],
-      pageList: pageList,
-      EVENT_MAP,
+      pageList: [],
+      eventTemplateList: []
+    }
+  },
+  getters: {
+    getPageEventList() {
+      return (id: string) => {
+        const page = this.pageList.find(row => row.id === id)
+        if (!page) return []
+        const eventTemplate = this.eventTemplateList.filter(template => template.pages.includes(page.value))
+        const commonEventList: ITrackEvent[] = eventTemplate.map(template => {
+          return {
+            ...template,
+            page: page.value,
+            readonly: true,
+          }
+        })
+        return [...page.eventList, ...commonEventList]
+      }
     }
   },
   actions: {
-    fetchFiledList() {
-      this.fieldList = []
+    // 页面
+    async fetchPageList() {
+      const {data} = await getPageList()
+      this.pageList = data.list
     },
     async fetchPageDetail(id: string) {
       return this.pageList.find(row => row.id === id)
@@ -81,6 +56,30 @@ export const useMetaStore = defineStore({
       if (idx > -1) {
         this.pageList.splice(idx, 1)
       }
-    }
+    },
+    // 事件模板
+    async fetchEventTemplateList() {
+      const {data} = await getEventTemplateList()
+      this.eventTemplateList = data.list
+    },
+    async saveEventTemplate(row: ITrackEventTemplate) {
+      const id = row.id
+      if (id) {
+        let idx = this.eventTemplateList.findIndex(row => row.id === id)
+        this.eventTemplateList.splice(idx, 1, row)
+      } else {
+        row.id = (+new Date()).toString()
+        this.eventTemplateList.push(row)
+      }
+    },
+    async fetchEventTemplateDetail(id: string) {
+      return this.eventTemplateList.find(row => row.id === id)
+    },
+    async removeEventTemplate(row: ITrackEventTemplate) {
+      let idx = this.eventTemplateList.indexOf(row)
+      if (idx > -1) {
+        this.eventTemplateList.splice(idx, 1)
+      }
+    },
   }
 })

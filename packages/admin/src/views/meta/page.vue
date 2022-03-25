@@ -1,13 +1,25 @@
 <template>
   <el-form label-width="100px">
     <el-form-item label="名称">
-      <el-input v-model="currentPage.name" />
+      <el-input v-model="currentPage.name"/>
     </el-form-item>
     <el-form-item label="value">
-      <el-input v-model="currentPage.value" />
+      <el-input v-model="currentPage.value"/>
     </el-form-item>
     <el-form-item label="公共参数">
-      <meta-list v-model="currentPage.commonParams"> </meta-list>
+      <meta-list v-model="currentPage.commonParams"></meta-list>
+    </el-form-item>
+    <el-form-item label="事件列表">
+      <el-row :gutter="20" style="width: 100%">
+        <el-col :xs="12" :sm="8" v-for="item in pageEventList">
+          <div class="p-20px mb-20px shadow">
+            <event-config :modelValue="item" :disabled="item.readonly"></event-config>
+          </div>
+        </el-col>
+      </el-row>
+    </el-form-item>
+    <el-form-item>
+      <el-button @click="addPageEvent">增加事件</el-button>
     </el-form-item>
     <el-form-item>
       <el-button @click="submit">保存</el-button>
@@ -16,28 +28,50 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, onMounted } from "vue";
+import {reactive, ref, onMounted, computed} from "vue";
 import metaList from "./metaList.vue";
-import { useMetaStore } from "../../store/meta";
-import { IPage } from "../../typings";
-import { useRoute, useRouter } from "vue-router";
-import { ElMessage } from "element-plus";
+import eventConfig from "./eventConfig.vue";
+
+import {useMetaStore} from "../../store/meta";
+import {IPage, ITrackEvent} from "../../typings";
+import {useRoute, useRouter} from "vue-router";
+import {ElMessage} from "element-plus";
 
 const $route = useRoute();
-const $rotuer = useRouter();
+const $router = useRouter();
 const metaStore = useMetaStore();
 
-const currentPage = reactive<IPage>({
-  id: "",
+const currentPage = ref<IPage>({
+  id: '',
   name: "",
   value: "",
   commonParams: [],
+  eventList: [],
 });
 
+const pageEventList = computed(() => {
+  const id = $route.query.id;
+  if(!id) return []
+
+  const getPageEventList = metaStore.getPageEventList
+  return getPageEventList(currentPage.value.id)
+})
+
+function createTempEvent(): ITrackEvent {
+  return {
+    id: "",
+    page: "",
+    name: "",
+    eventType: 1,
+    eventValue: "",
+    commonParams: [],
+  };
+}
+
 async function submit() {
-  await metaStore.savePageDetail(currentPage);
+  await metaStore.savePageDetail(currentPage.value);
   ElMessage.success("操作成功");
-  $rotuer.back();
+  $router.back();
 }
 
 async function fetchDetail() {
@@ -45,17 +79,22 @@ async function fetchDetail() {
   if (id) {
     const data = await metaStore.fetchPageDetail(id as string);
     if (data) {
-      Object.assign(currentPage, data);
+      currentPage.value = data;
     }
   }
 }
+
+async function addPageEvent() {
+  currentPage.value.eventList.push(createTempEvent());
+}
+
 onMounted(() => {
   fetchDetail();
 });
 </script>
 
 <style scoped lang="scss">
-::v-deep {
+:deep {
   .el-form-item .el-form-item {
     margin-bottom: 22px;
   }
