@@ -11,7 +11,7 @@
     </el-form-item>
     <el-form-item label="事件列表">
       <el-row :gutter="20" style="width: 100%">
-        <el-col :xs="12" :sm="8" v-for="item in pageEventList">
+        <el-col :xs="12" :sm="8" v-for="item in currentPage.eventList">
           <div class="p-20px mb-20px shadow">
             <event-config :modelValue="item" :disabled="item.readonly"></event-config>
           </div>
@@ -42,20 +42,12 @@ const $router = useRouter();
 const metaStore = useMetaStore();
 
 const currentPage = ref<IPage>({
-  id: '',
+  _id: '',
   name: "",
   value: "",
   commonParams: [],
   eventList: [],
 });
-
-const pageEventList = computed(() => {
-  const id = $route.query.id;
-  if(!id) return []
-
-  const getPageEventList = metaStore.getPageEventList
-  return getPageEventList(currentPage.value.id)
-})
 
 function createTempEvent(): ITrackEvent {
   return {

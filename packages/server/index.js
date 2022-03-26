@@ -2,15 +2,25 @@ const Koa = require("koa");
 const bodyparser = require("koa-bodyparser");
 const cors = require("koa-cors");
 
+const mongoose = require("mongoose");
+
 const router = require("./router");
 
 const app = new Koa();
 
-app.use(cors()).use(bodyparser());
+app.use(cors())
+app.use(bodyparser());
 
 app.use(router.routes()).use(router.allowedMethods());
 
-const port = 1546;
-app.listen(port);
 
-console.log(`app run at ${port}`);
+
+async function init() {
+    await mongoose.connect("mongodb://localhost/test");
+
+    const port = 1546;
+    app.listen(port);
+    console.log(`app run at ${port}`);
+}
+
+init()

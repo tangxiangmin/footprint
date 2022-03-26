@@ -21,17 +21,17 @@ const menuList = [
   {
     route: {name: 'home'},
     title: '页面列表',
-    index: 2
+    index: '2'
   },
   {
     route: {name: 'eventList'},
     title: '模板事件列表',
-    index: 3
+    index: '3'
   },
   {
     route: {name: 'search'},
     title: '查询',
-    index: 4
+    index: '4'
   }
 ]
 const route = useRoute()

@@ -5,7 +5,7 @@
     </el-form-item>
   </el-form>
   <el-table border :data="pageList">
-    <el-table-column label="id" prop="id" />
+    <el-table-column label="id" prop="_id" />
     <el-table-column label="页面名称" prop="name" />
     <el-table-column label="页面key" prop="value" />
     <el-table-column label="事件列表">
@@ -54,7 +54,7 @@ function editPage(row: IPage) {
   router.push({
     name: "page",
     query: {
-      id: row.id,
+      id: row._id,
     },
   });
 }

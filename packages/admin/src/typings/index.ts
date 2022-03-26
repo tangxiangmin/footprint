@@ -7,7 +7,7 @@ export interface IMetaRow {
 }
 
 export interface IPage {
-  id: string,
+  _id: string,
   name: string,
   value: string,
   commonParams: IMetaRow[],
@@ -15,7 +15,6 @@ export interface IPage {
 }
 
 export interface ITrackEvent {
-  id: string,
   page: string,
   name: string,
   eventType: EventType
@@ -25,5 +24,6 @@ export interface ITrackEvent {
 }
 
 export type ITrackEventTemplate = Omit<ITrackEvent, 'page'> & {
+  _id?: string,
   pages: string[]
 }

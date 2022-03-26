@@ -5,7 +5,7 @@
     </el-form-item>
   </el-form>
   <el-table border :data="eventTemplateList">
-    <el-table-column label="id" prop="id"/>
+    <el-table-column label="id" prop="_id"/>
     <el-table-column label="事件名称" prop="name"/>
     <el-table-column label="事件类型" prop="eventType"/>
     <el-table-column label="事件key" prop="eventValue"/>
@@ -47,7 +47,7 @@ function editEvent(row: ITrackEventTemplate) {
   router.push({
     name: "event",
     query: {
-      id: row.id
+      id: row._id
     }
   });
 }

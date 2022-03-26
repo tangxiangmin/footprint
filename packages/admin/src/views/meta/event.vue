@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import { ElMessage } from "element-plus";
 
 import eventConfig from "./eventConfig.vue";
@@ -27,12 +27,13 @@ import {ITrackEvent, ITrackEventTemplate} from "../../typings";
 import {useRoute, useRouter} from "vue-router";
 
 const metaStore = useMetaStore();
-const pageList = metaStore.pageList;
 
 const $route = useRoute();
+const pageList = computed(()=>{
+  return metaStore.pageList;
+})
 
 const trackEvent = ref<ITrackEventTemplate>({
-  id: "",
   name: "",
   pages: [],
   eventType: 1,
@@ -43,7 +44,7 @@ const trackEvent = ref<ITrackEventTemplate>({
 async function fetchDetail() {
   const id = $route.query.id;
   if (id) {
-    const data = await metaStore.fetchEventTemplateDetail(id as string);
+    const {data} = await metaStore.fetchEventTemplateDetail(id as string);
     if (data) {
       trackEvent.value = data;
     }
@@ -51,6 +52,7 @@ async function fetchDetail() {
 }
 
 onMounted(() => {
+  metaStore.fetchPageList()
   fetchDetail();
 });
 

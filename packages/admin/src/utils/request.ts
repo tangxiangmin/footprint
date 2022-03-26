@@ -7,7 +7,7 @@ export interface BaseResponse<T> {
 }
 
 const service = axios.create({
-  baseURL: 'http://localhost:7654'
+  baseURL: 'http://localhost:1546'
 })
 
 function setHeaderAuthorization(config: AxiosRequestConfig<any>) {
