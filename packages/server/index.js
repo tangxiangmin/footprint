@@ -14,13 +14,12 @@ app.use(bodyparser());
 app.use(router.routes()).use(router.allowedMethods());
 
 
-
 async function init() {
-    await mongoose.connect("mongodb://localhost/test");
+  await mongoose.connect("mongodb://database/test");
 
-    const port = 1546;
-    app.listen(port);
-    console.log(`app run at ${port}`);
+  const port = 1546;
+  app.listen(port, '0.0.0.0');
+  console.log(`app run at ${port}`);
 }
 
 init()

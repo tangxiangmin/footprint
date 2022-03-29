@@ -33,7 +33,9 @@ export const useMetaStore = defineStore({
       return id ? updatePage(row) : addPage(row)
     },
     async removePage(row: IPage) {
-      return removePage(row._id)
+      if(row._id){
+        return removePage(row._id)
+      }
     },
     // 事件模板
     async fetchEventTemplateList() {

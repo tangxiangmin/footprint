@@ -7,7 +7,7 @@ export interface IMetaRow {
 }
 
 export interface IPage {
-  _id: string,
+  _id?: string,
   name: string,
   value: string,
   commonParams: IMetaRow[],

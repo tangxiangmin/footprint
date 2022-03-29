@@ -7,7 +7,7 @@ export function getPageList() {
 }
 
 export function getPageDetail(id: string) {
-  return http.get<any, BaseResponse<ITrackEventTemplate>>(`/log/page/${id}`)
+  return http.get<any, BaseResponse<IPage>>(`/log/page/${id}`)
 }
 
 export function addPage(data: IPage) {

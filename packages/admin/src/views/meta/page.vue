@@ -42,7 +42,6 @@ const $router = useRouter();
 const metaStore = useMetaStore();
 
 const currentPage = ref<IPage>({
-  _id: '',
   name: "",
   value: "",
   commonParams: [],
@@ -51,7 +50,6 @@ const currentPage = ref<IPage>({
 
 function createTempEvent(): ITrackEvent {
   return {
-    id: "",
     page: "",
     name: "",
     eventType: 1,

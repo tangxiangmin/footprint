@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  database:
+    image: mongo
+    restart: always
+    volumes:
+      - ~/data/db3:/data/db
+    networks:
+      - app-network
+  server:
+    build:
+      context: ./
+      dockerfile: ./packages/server/Dockerfile
+    volumes:
+      - .:/projects
+      - /projects/node_modules/
+      - /projects/packages/server/node_modules/
+    ports:
+      - 1546:1546
+    tty: true
+    networks:
+      - app-network
+  admin:
+    build:
+      context: ./
+      dockerfile: ./packages/admin/Dockerfile
+    volumes:
+      - .:/projects
+      - /projects/node_modules/
+      - /projects/packages/admin/node_modules/
+      - /projects/.pnpm-store/
+    ports:
+      - 3000:3000
+    tty: true
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
