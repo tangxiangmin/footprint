@@ -11,4 +11,6 @@ COPY . .
 
 RUN pnpm install -r --offline
 
+VOLUME ["/projects/node_modules/", "/projects/packages/server/node_modules/", "/projects/.pnpm-store/"]
+
 CMD cd packages/server && npm run dev

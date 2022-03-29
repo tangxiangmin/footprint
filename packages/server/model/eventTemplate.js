@@ -10,7 +10,7 @@ const EventTemplate = mongoose.model("log_meta_event_template", {
 
 
 function findAllEventTemplate() {
-    return EventTemplate.find();
+    return EventTemplate.find().lean();
 }
 
 function findEventTemplate(id) {

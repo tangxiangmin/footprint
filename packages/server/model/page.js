@@ -39,7 +39,7 @@ async function findAllPage() {
 
 async function findPage(id) {
     const [page, eventTemplateList] = await Promise.all([
-        Page.findById(id),
+        Page.findById(id).lean(),
         eventTemplate.findAllEventTemplate(),
     ]);
     _formatPageEventList(page, eventTemplateList);

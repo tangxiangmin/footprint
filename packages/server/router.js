@@ -63,7 +63,7 @@ router.delete("/log/page/:id", async (ctx, next) => {
     };
 });
 
-// eventTemplate 
+// eventTemplate
 router.get("/log/event_template_list", async (ctx, next) => {
     const res = await eventTemplate.findAllEventTemplate();
 
