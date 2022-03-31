@@ -1,17 +1,28 @@
 <script setup lang="ts">
-
+import {ref} from 'vue'
 import {getCurrentTrackTask} from "@footprint/sdk";
 
+const logs = ref([])
+
 function onClick() {
-  console.log('click me')
   const trackTask = getCurrentTrackTask()
   trackTask.trackClick('btn-1', {}, {from: "xxx"})
+}
+
+async function fetchLogs() {
+  const {data} = await fetch('http://localhost:1546/log/log_record_list')
+      .then(response => response.json())
+  logs.value = data
 }
 
 </script>
 
 <template>
   <button @click="onClick">click me</button>
+  <button @click="fetchLogs">fetch logs</button>
+  <ul>
+    <li v-for="item in logs">{{ JSON.stringify(item) }}</li>
+  </ul>
 </template>
 
 <style>

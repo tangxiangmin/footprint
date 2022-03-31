@@ -1,30 +1,24 @@
-import { TrackPageTask } from './trackTask'
+import {TrackPageTask} from './trackTask'
 
-export { VueLogPlugin, injectLogMixin } from "./vue"
+export {VueLogPlugin, injectLogMixin} from "./vue"
 
-export { getCurrentTrackTask } from './trackTask'
-export { EVENT_TYPE } from './report'
+export {getCurrentTrackTask} from './trackTask'
+export {EVENT_TYPE, sendBeacon, sendPxPoint} from './report'
 
 type InitParams = {
-  reportGetApi: string,
-  reportPostApi: string,
-  getCommonLogParams: Function,
-  getCurrentRoute: Function
+  getCurrentRoute: Function,
+  sendLog: (data: any) => void,
 }
 
 // 初始化
 export async function init(params: InitParams) {
   const {
-    reportGetApi,
-    reportPostApi,
-    getCommonLogParams,
     getCurrentRoute,
+    sendLog
   } = params
 
   TrackPageTask.register({
-    reportGetApi,
-    reportPostApi,
-    getCommonLogParams,
-    getCurrentRoute
+    getCurrentRoute,
+    sendLog
   })
 }

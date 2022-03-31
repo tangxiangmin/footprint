@@ -4,6 +4,8 @@ const page = require("./model/page");
 
 const eventTemplate = require("./model/eventTemplate")
 
+const logRecord = require('./model/log')
+
 const router = new Router();
 
 // page
@@ -120,22 +122,31 @@ router.delete("/log/event_template/:id", async (ctx, next) => {
     };
 });
 
-// router.get("/log/report", (ctx, next) => {
-//     const query = ctx.request.query;
-//     ctx.body = {
-//         code: 200,
-//         msg: "success",
-//         data: query,
-//     };
-// });
+router.get("/log/report", async (ctx, next) => {
+    const query = ctx.request.query;
+    await logRecord.addLog(query)
+    ctx.body = {
+        code: 200,
+        msg: "success",
+    };
+});
 
-// router.post("/log/report", (ctx, next) => {
-//     const params = ctx.request.body;
-//     ctx.body = {
-//         code: 200,
-//         msg: "success",
-//         data: params,
-//     };
-// });
+router.post("/log/report",async  (ctx, next) => {
+    const params = ctx.request.body;
+    await logRecord.addLog(params)
+    ctx.body = {
+        code: 200,
+        msg: "success",
+    };
+});
+router.get("/log/log_record_list",async  (ctx, next) => {
+  const params = ctx.request.body;
+  const res = await logRecord.findLogs(params)
+  ctx.body = {
+    code: 200,
+    msg: "success",
+    data: res
+  };
+});
 
 module.exports = router;

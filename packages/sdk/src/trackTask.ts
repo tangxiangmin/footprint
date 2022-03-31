@@ -13,8 +13,8 @@ export class TrackPageTask {
   static trackLog: Function = noop
   static getCurrentRoute: Function = noop
 
-  static register({reportGetApi, reportPostApi, getCommonLogParams, getCurrentRoute}) {
-    TrackPageTask.trackLog = initTrackLog({getCommonLogParams, reportGetApi, reportPostApi})
+  static register({sendLog, getCurrentRoute}) {
+    TrackPageTask.trackLog = initTrackLog({sendLog})
 
     TrackPageTask.getCurrentRoute = getCurrentRoute
   }

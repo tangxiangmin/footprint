@@ -5,6 +5,8 @@ services:
     restart: always
     volumes:
       - ~/data/db3:/data/db
+    ports:
+      - 27017:27017
     networks:
       - app-network
   server:

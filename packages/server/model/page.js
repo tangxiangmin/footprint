@@ -51,6 +51,7 @@ function removePage(id) {
 }
 
 function updatePage(data) {
+    data.eventList = data.eventList.filter(row=>!row.readonly)
     return Page.updateOne({ _id: data._id }, data);
 }
 

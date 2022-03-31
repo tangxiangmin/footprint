@@ -13,6 +13,7 @@
           <el-option value="boolean" label="布尔值"/>
           <el-option value="date" label="日期"/>
           <el-option value="timestamp" label="时间戳"/>
+          <el-option value="enum" label="枚举值"/>
           <el-option value="json" label="json"/>
         </el-select>
       </template>
