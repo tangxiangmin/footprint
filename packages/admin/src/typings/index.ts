@@ -27,3 +27,11 @@ export type ITrackEventTemplate = Omit<ITrackEvent, 'page'> & {
   _id?: string,
   pages: string[]
 }
+
+
+export interface ITraceParams {
+  _id?: string,
+  name: string,
+  utmSource: string
+  utmCampaign: string,
+}

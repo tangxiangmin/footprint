@@ -9,6 +9,10 @@ footprint
 docker-compose up -d
 ```
 
+## 埋点SDK API
+
+移步 [documentation](./packages/sdk/README.md)
+
 ## 事件
 
 eventType表示某个事件的类型
@@ -69,6 +73,20 @@ export const EVENT_TYPE = {
 
 除了无法在页面编辑处修改之外，与常规的事件没有任何区分
 
-## 埋点SDK API
+## 访问追踪
 
-移步 [documentation](./packages/sdk/README.md)
+> 本章节相关字段待定
+
+有时候，在单次会话期间，需要关注某个页面的访问来源，在非web的环境下，referer并不足以实现收集页面来源的功能，因此需要开发者自己实现
+
+可以将来源分为应用内部来源和应用外部来源
+
+对于外部来源
+* `utm_source`，用于追踪页面外部来源，比如通过第三方广告平台投放的广告，跳转到某个落地承接页，承接页会上报该数据
+* `utm_campaign`，外部投放的广告名称
+
+对于内部来源
+* `from_page`，用于追踪页面内部来源，比如从页面A跳转到了页面B，页面B会上报该字段的内容为页面A
+* `from_pos`，从来源页面的某个位置跳转过来
+
+看起来直接查日志记录就可以进行会话追踪了

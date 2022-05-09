@@ -27,9 +27,14 @@ const routes = [
     component: () => import('../views/meta/event.vue')
   },
   {
+    path: '/meta/trace_params',
+    name: 'traceParams',
+    component: () => import('../views/meta/traceParams.vue')
+  },
+  {
     path: '/meta/search',
     name: 'search',
-    component: () => import('../views/search/index.vue')
+    component: () => import('../views/meta/search.vue')
   },
 ]
 

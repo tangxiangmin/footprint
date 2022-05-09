@@ -6,6 +6,8 @@ const eventTemplate = require("./model/eventTemplate")
 
 const logRecord = require('./model/log')
 
+const traceParams = require('./model/traceParams')
+
 const router = new Router();
 
 // page
@@ -148,5 +150,46 @@ router.get("/log/log_record_list",async  (ctx, next) => {
     data: res
   };
 });
+
+// traceParams
+router.get("/log/trace_params_list", async (ctx,next)=>{
+  const res = await traceParams.findAll();
+
+  ctx.body = {
+    code: 200,
+    msg: "success",
+    data: {
+      list: res,
+    },
+  };
+})
+router.post("/log/trace_params", async (ctx,next)=>{
+  const data = ctx.request.body;
+  const res = await traceParams.addOne(data);
+  ctx.body = {
+    code: 200,
+    msg: "success",
+    data: res,
+  };
+})
+router.put("/log/trace_params", async (ctx,next)=>{
+  const data = ctx.request.body;
+  const res = await traceParams.updateOne(data);
+  ctx.body = {
+    code: 200,
+    msg: "success",
+    data: res,
+  };
+})
+
+router.delete("/log/trace_params/:id", async (ctx,next)=>{
+  const { id } = ctx.request.params;
+  const res = await traceParams.removeOne(id);
+  ctx.body = {
+    code: 200,
+    msg: "success",
+    data: res,
+  };
+})
 
 module.exports = router;

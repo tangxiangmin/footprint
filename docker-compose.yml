@@ -10,6 +10,8 @@ services:
     networks:
       - app-network
   server:
+    depends_on:
+      - database
     build:
       context: ./
       dockerfile: ./packages/server/Dockerfile
