@@ -1,6 +1,8 @@
 import {TrackPageTask} from './trackTask'
 
-export {getCurrentTrackTask, getPageTrackTask, getCurrentRoute} from './trackTask'
+export {
+  getCurrentTrackTask, getPageTrackTask, getCurrentRoute, initPageTrackTask, removePageTrackTask,
+} from './trackTask'
 export {EVENT_TYPE, sendBeacon, sendPxPoint} from './report'
 
 type InitParams = {

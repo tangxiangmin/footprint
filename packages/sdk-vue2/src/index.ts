@@ -1,3 +1,5 @@
+export * from "@footprint/sdk-core"
+
 import {log} from './directive'
 import logMixin from './mixin'
 

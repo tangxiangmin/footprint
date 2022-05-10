@@ -3,7 +3,9 @@ import {getCurrentTrackTask} from "@footprint/sdk-core";
 
 type LogElement = Element & {
   __logValue: any,
-  __exposureTimer: any
+  __exposureTimer: any,
+  __once: boolean,
+  __reported: boolean
 }
 /**
  * 曝光规则
@@ -15,6 +17,9 @@ const observer = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
       const target = entry.target as LogElement
+      if (target.__reported) {
+        return
+      }
       if (entry.isIntersecting) {
         // 进入视图触发
         try {
@@ -25,6 +30,9 @@ const observer = new IntersectionObserver(
             // 页面可见时才上报
             if (document.visibilityState === 'visible') {
               trackTask.trackExposure(key, extend, extra)
+            }
+            if (target.__once) {
+              target.__reported = true
             }
           }, EXPOSURE_DURATION)
         } catch (err) {
@@ -76,8 +84,9 @@ function unbind(el) {
 export const log = {
   bind(el: LogElement, binding) {
     const {modifiers} = binding
-    const {click, exposure} = modifiers
+    const {click, exposure, once} = modifiers
     el.__logValue = binding.value
+    el.__once = once
 
     if (click) {
       clickDirective(el)
