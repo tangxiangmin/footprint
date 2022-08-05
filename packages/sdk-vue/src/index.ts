@@ -99,3 +99,10 @@ export const log = {
   componentUpdated: update,
   unbind
 }
+
+
+export const VueLogPlugin = {
+  install(Vue) {
+    Vue.directive('log', log) // v-log.click、v-log.exposure
+  }
+}

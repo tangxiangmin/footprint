@@ -16,7 +16,7 @@ const sendLog = (data)=>{
   data =  {...data, uuid:'xxx'}  // 可以添加一些额外的参数
   
   // 可以自己实现上报的接口
-  if(typeof widnow.navigator.sendBeacon ==='function'){
+  if(typeof window.navigator.sendBeacon ==='function'){
     return sendBeacon('http://xxx/log_post', data)
   }else {
     return sendPxPoint('http://xxx/log_get', data)

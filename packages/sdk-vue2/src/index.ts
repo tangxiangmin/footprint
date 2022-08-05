@@ -1,13 +1,7 @@
 export * from "@footprint/sdk-core"
+export * from "@footprint/sdk-vue"
 
-import {log} from './directive'
 import logMixin from './mixin'
-
-export const VueLogPlugin = {
-  install(Vue) {
-    Vue.directive('log', log) // v-log.click、v-log.exposure
-  }
-}
 
 // 向路由组件混入埋点数据，避免二级目录埋点异常
 export const injectLogMixin = routeComponent => {

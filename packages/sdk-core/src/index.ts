@@ -11,13 +11,13 @@ type InitParams = {
 }
 
 // 初始化
-export async function init(params: InitParams) {
+export function init(params: InitParams) {
   const {
     getCurrentRoute,
     sendLog
   } = params
 
-  TrackPageTask.register({
+  return TrackPageTask.register({
     getCurrentRoute,
     sendLog
   })

@@ -1,6 +1,7 @@
 import {EVENT_TYPE, initTrackLog} from "./report";
 
 function getPageName(route) {
+  if (!route) return {}
   const {log: logConfig} = route.meta || {}
   return (logConfig && logConfig.name) || route.name
 }
@@ -88,45 +89,34 @@ export class TrackPageTask {
   }
 }
 
-const factory = {
-  map: new Map(),
-  setPageTrackTask(route, task) {
-    this.map.set(route, task)
-  },
-  getPageTrackTask(route) {
-    return this.map.get(route)
-  },
-  removePageTrackTask(route) {
-    this.map.delete(route)
-  }
-}
+const map = new Map()
 
 export function initPageTrackTask(route) {
-  const page = getPageName(route)
   // 同一个路由页面使用单例
-  let task = factory.getPageTrackTask(route)
+  let task = map.get(route)
   if (!task) {
+    const page = getPageName(route)
     task = new TrackPageTask(page)
-    factory.setPageTrackTask(route, task)
+    map.set(route, task)
   }
   return task
 }
 
 export function getPageTrackTask(route) {
-  const task = factory.getPageTrackTask(route)
+  const task = map.get(route)
   if (task) return task
   return initPageTrackTask(route)
 }
 
 // 获取当前页面的埋点任务
 export function getCurrentTrackTask() {
-  const route = TrackPageTask.getCurrentRoute()
+  const route = getCurrentRoute()
   return getPageTrackTask(route)
 }
 
 export function removePageTrackTask() {
-  const route = TrackPageTask.getCurrentRoute()
-  factory.removePageTrackTask(route)
+  const route = getCurrentRoute()
+  map.delete(route)
 }
 
 export function getCurrentRoute() {
