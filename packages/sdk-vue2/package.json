@@ -1,5 +1,5 @@
 {
-  "name": "@footprint/sdk-vue2",
+  "name": "@footprintjs/sdk-vue2",
   "version": "1.0.0",
   "description": "todo",
   "main": "lib/index.js",
@@ -9,11 +9,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "files": ["esm","lib"],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@footprint/sdk-core": "workspace:^1.0.0",
-    "@footprint/sdk-vue": "workspace:^1.0.0"
+    "@footprintjs/sdk-core": "workspace:^1.0.0",
+    "@footprintjs/sdk-vue": "workspace:^1.0.0"
   },
   "devDependencies": {
     "vue": "^2.6.14",

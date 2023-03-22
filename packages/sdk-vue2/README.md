@@ -6,7 +6,7 @@
 定义路由
 ```js
 import Router from 'vue-router'
-import {injectLogMixin} from "@footprint/sdk-vue2";
+import {injectLogMixin} from "@footprintjs/sdk-vue2";
 
 const createLogParams = (name: string = '', pv = true, duration = false, async = false) => ({
   name,
@@ -97,7 +97,7 @@ export async function initLog() {
 复杂场景：设置公共参数、同一路由组件参数变化、点击事件
 ```vue
 <script>
-import {getCurrentTrackTask} from "@footprint/sdk-vue2";
+import {getCurrentTrackTask} from "@footprintjs/sdk-vue2";
 
 export default {
   name: "detail",

@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import {useRoute} from 'vue-router'
 import {computed} from "vue";
-import {useTrackTask} from "@footprint/sdk-vue3";
+import {useTrackTask} from "@footprintjs/sdk-vue3";
 
 const route = useRoute()
 

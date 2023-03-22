@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import {EVENT_TYPE} from '@footprint/sdk'
+import {EVENT_TYPE} from '@footprintjs/sdk'
 
 const EVENT_MAP = Object.freeze({
   [EVENT_TYPE.pv]: {

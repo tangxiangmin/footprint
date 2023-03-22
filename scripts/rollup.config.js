@@ -7,7 +7,10 @@ module.exports = (name, input, declaration = false) => {
   const external = ['vue', 'vue-router', 'react']
 
   if (['sdk-vue','sdk-vue3', 'sdk-vue2'].includes(name)) {
-    external.push('@footprint/sdk-core')
+    external.push('@footprintjs/sdk-core')
+  }
+  if (['sdk-vue3', 'sdk-vue2'].includes(name)) {
+    external.push('@footprintjs/sdk-vue')
   }
 
   return {

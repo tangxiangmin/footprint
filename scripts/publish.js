@@ -20,7 +20,7 @@ async function publish(target) {
 
 function publishAll(targets) {
   if(!targets.length) {
-    targets = ['sdk-core', 'sdk-vue3']
+    targets = ['sdk-core','sdk-vue', 'sdk-vue3']
   }
   for (const target of targets) {
     publish(target)

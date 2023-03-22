@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
-import {getCurrentTrackTask, getCurrentRoute} from "@footprint/sdk-core"
+import {getCurrentTrackTask, getCurrentRoute} from "@footprintjs/sdk-core"
 
-export * from "@footprint/sdk-core"
+export * from "@footprintjs/sdk-core"
 
 // 路由组件每次变化或更新都处理处理上报
 export function useTrackTask(extend: object = {}, extra: object = {}) {

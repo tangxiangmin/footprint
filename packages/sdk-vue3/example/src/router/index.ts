@@ -1,5 +1,8 @@
 import {createRouter, createWebHistory} from "vue-router";
 
+import IndexPage from '../views/index.vue'
+import {withLog} from "../../../src/hoc";
+
 const createLogParams = (name: string = '', pv = true, duration = false, async = false) => ({
   name,
   pv,
@@ -10,7 +13,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: () => import('../views/index.vue'),
+    component: withLog(IndexPage),
     meta: {
       log: createLogParams('index')
     }
@@ -18,7 +21,7 @@ const routes = [
   {
     path: '/list',
     name: 'list',
-    component: () => import('../views/list.vue'),
+    component: withLog(() => import('../views/list.vue')),
     meta: {
       log: createLogParams('list')
     }

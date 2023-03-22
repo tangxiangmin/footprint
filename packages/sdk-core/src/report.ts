@@ -31,10 +31,11 @@ export function sendPxPoint(url, params) {
 
 
 // 信标埋点
-export function sendBeacon(url, params) {
+export function sendBeacon(url, params, customHeaders = {}) {
   const data = new URLSearchParams(params)
   const headers = {
-    type: 'application/x-www-form-urlencoded'
+    type: 'application/x-www-form-urlencoded',
+    ...customHeaders
   }
   // @ts-ignore
   const blob = new Blob([data], headers)

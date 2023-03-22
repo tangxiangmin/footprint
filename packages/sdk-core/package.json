@@ -1,6 +1,6 @@
 {
-  "name": "@footprint/sdk-core",
-  "version": "1.0.2",
+  "name": "@footprintjs/sdk-core",
+  "version": "1.0.7",
   "description": "",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -9,6 +9,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "files": [
+    "esm",
+    "lib"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {

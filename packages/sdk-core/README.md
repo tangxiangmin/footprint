@@ -6,7 +6,7 @@
 ## 使用
 
 ```js
-import {init, getCurrentTrackTask, sendBeacon, sendPxPoint} from "@footprint/sdk-core";
+import {init, getCurrentTrackTask, sendBeacon, sendPxPoint} from "@footprintjs/sdk-core";
 
 const getCurrentRoute = () => {
   return router.currentRoute // 每个页面返回一个独立的key即可
@@ -35,6 +35,6 @@ trackTask.trackClick('btn-1', {}, {}) // 上报埋点，会自动合并系统级
 ```
 
 目前支持多种框架的埋点
-* `@footprint/sdk-vue3`
-* `@footprint/sdk-vue2`
-* `@footprint/sdk-react`
+* `@footprintjs/sdk-vue3`
+* `@footprintjs/sdk-vue2`
+* `@footprintjs/sdk-react`

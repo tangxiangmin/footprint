@@ -1,5 +1,5 @@
-export * from "@footprint/sdk-core"
-export * from "@footprint/sdk-vue"
+export * from "@footprintjs/sdk-core"
+export * from "@footprintjs/sdk-vue"
 
 import logMixin from './mixin'
 

@@ -1,6 +1,6 @@
 {
-  "name": "@footprint/sdk-vue3",
-  "version": "1.0.2",
+  "name": "@footprintjs/sdk-vue3",
+  "version": "1.0.7",
   "description": "",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -9,15 +9,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "files": [
+    "esm",
+    "lib"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@footprint/sdk-core": "workspace:^1.0.0",
-    "@footprint/sdk-vue": "workspace:^1.0.0"
-  },
-  "devDependencies": {
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.0"
+    "@footprintjs/sdk-core": "workspace:^1.0.0",
+    "@footprintjs/sdk-vue": "workspace:^1.0.0",
+    "vue": "^3.2.40",
+    "vue-router": "^4.1.5"
   },
   "peerDependencies": {
     "vue": "^3.2.25",

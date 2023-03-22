@@ -1,5 +1,5 @@
 import 'intersection-observer' // IntersectionObserver polyfill
-import {getCurrentTrackTask} from "@footprint/sdk-core";
+import {getCurrentTrackTask} from "@footprintjs/sdk-core";
 
 type LogElement = Element & {
   __logValue: any,

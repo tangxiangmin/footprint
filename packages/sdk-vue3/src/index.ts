@@ -1,16 +1,16 @@
-import {getCurrentTrackTask,} from "@footprint/sdk-core";
-import {computed, onMounted, onUnmounted} from "vue";
-import {useRoute} from "vue-router";
-import {log} from "@footprint/sdk-vue"
+import {computed, onMounted, onUnmounted} from 'vue'
+import {useRoute} from 'vue-router'
+import {getCurrentTrackTask,} from "@footprintjs/sdk-core";
+import {log} from "@footprintjs/sdk-vue"
 
-export * from "@footprint/sdk-core"
+export * from "@footprintjs/sdk-core"
 
 const defaultPluginOptions = {
   directiveName: 'log'
 }
 
 export const VueLogPlugin = {
-  install(app, options = defaultPluginOptions) {
+  install(app:any, options = defaultPluginOptions) {
     app.directive(options.directiveName, {
       beforeMount: log.bind,
       updated: log.componentUpdated,
@@ -48,6 +48,7 @@ export function useTrackTask(extend: object = {}, extra: object = {}) {
       task.trackDuration(val)
     }
   }
+
   onMounted(() => {
     reportPv()
     window.addEventListener('unload', reportDuration)

@@ -112,7 +112,7 @@ export async function initLog() {
 </template>
 
 <script lang="ts" setup>
-import {useTrackTask} from "@footprint/sdk-vue3";
+import {useTrackTask} from "@footprintjs/sdk-vue3";
 useTrackTask()
 </script>
 ```
@@ -128,7 +128,7 @@ useTrackTask()
 <script lang="ts" setup>
 import {useRoute} from 'vue-router'
 import {computed} from "vue";
-import {useTrackTask} from "@footprint/sdk-vue3";
+import {useTrackTask} from "@footprintjs/sdk-vue3";
 
 const route = useRoute()
 

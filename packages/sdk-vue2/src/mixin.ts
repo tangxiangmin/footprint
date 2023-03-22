@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {initPageTrackTask, removePageTrackTask, getCurrentTrackTask} from '@footprint/sdk-core'
+import {initPageTrackTask, removePageTrackTask, getCurrentTrackTask} from '@footprintjs/sdk-core'
 
 
 // 路由级别的组件可以上报pv和停留事件

@@ -1,6 +1,6 @@
 {
-  "name": "@footprint/sdk-vue",
-  "version": "1.0.0",
+  "name": "@footprintjs/sdk-vue",
+  "version": "1.0.5",
   "description": "",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -9,10 +9,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "files": [
+    "esm",
+    "lib"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@footprint/sdk-core": "workspace:^1.0.0",
+    "@footprintjs/sdk-core": "workspace:^1.0.0",
     "intersection-observer": "^0.12.0"
   }
 }

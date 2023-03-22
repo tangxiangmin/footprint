@@ -44,7 +44,7 @@ function RouterViews() {
 初始化埋点sdk
 
 ```js
-import {init, sendBeacon} from "@footprint/sdk-react";
+import {init, sendBeacon} from "@footprintjs/sdk-react";
 import {matchRoutes} from "react-router-dom";
 import {routes, route404} from '../router';
 
@@ -79,7 +79,7 @@ export async function initLog() {
 
 简单场景：自动上报pv和停留
 ```tsx
-import {useTrackTask} from "@footprint/sdk-react";
+import {useTrackTask} from "@footprintjs/sdk-react";
 export default function Home() {
   useTrackTask()
   return (<div>Home</div>)
@@ -89,7 +89,7 @@ export default function Home() {
 ```tsx
 import {useParams} from 'react-router-dom';
 import {useMemo} from "react";
-import {getCurrentTrackTask, useTrackTask} from "@footprint/sdk-react";
+import {getCurrentTrackTask, useTrackTask} from "@footprintjs/sdk-react";
 
 export default function Detail() {
   const params = useParams()
