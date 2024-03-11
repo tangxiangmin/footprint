@@ -1,37 +1,36 @@
 type EventType = 1 | 2 | 3 | 4 | 5
 
 export interface IMetaRow {
-  field: string;
-  type: string;
-  comment: string;
+  field: string
+  type: string
+  comment: string
 }
 
 export interface IPage {
-  _id?: string,
-  name: string,
-  value: string,
-  commonParams: IMetaRow[],
+  _id?: string
+  name: string
+  value: string
+  commonParams: IMetaRow[]
   eventList: ITrackEvent[]
 }
 
 export interface ITrackEvent {
-  page: string,
-  name: string,
+  page: string
+  name: string
   eventType: EventType
   eventValue: string | number
-  commonParams: IMetaRow[],
-  readonly?: boolean,
+  commonParams: IMetaRow[]
+  readonly?: boolean
 }
 
 export type ITrackEventTemplate = Omit<ITrackEvent, 'page'> & {
-  _id?: string,
+  _id?: string
   pages: string[]
 }
 
-
 export interface ITraceParams {
-  _id?: string,
-  name: string,
+  _id?: string
+  name: string
   utmSource: string
-  utmCampaign: string,
+  utmCampaign: string
 }

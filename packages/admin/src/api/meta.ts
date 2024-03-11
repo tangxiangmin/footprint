@@ -1,5 +1,5 @@
-import http, {BaseResponse} from '../utils/request'
-import {IPage, ITrackEventTemplate, ITraceParams} from "../typings";
+import http, { BaseResponse } from '../utils/request'
+import { IPage, ITrackEventTemplate, ITraceParams } from '../typings'
 
 // page
 export function getPageList() {
@@ -43,10 +43,11 @@ export function removeEventTemplate(id: string) {
   return http.delete<any, BaseResponse<any>>(`/log/event_template/${id}`)
 }
 
-
 // traceParams
-export function getTraceParams(params: { page: number, pageSize: number }) {
-  return http.get<any, BaseResponse<{ list: ITraceParams[], total: number }>>('/log/trace_params_list')
+export function getTraceParams(params: { page: number; pageSize: number }) {
+  return http.get<any, BaseResponse<{ list: ITraceParams[]; total: number }>>(
+    '/log/trace_params_list'
+  )
 }
 
 export function addTraceParams(data: ITraceParams) {

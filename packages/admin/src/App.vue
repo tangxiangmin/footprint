@@ -4,7 +4,6 @@
       <div class="w-200px flex-shrink-0">
         <el-menu :default-active="currentIndex" class="el-menu-vertical-demo h-100vh">
           <template v-for="menu in menuList">
-
             <el-sub-menu :index="menu.index" v-if="menu.children">
               <template #title>
                 <span>{{ menu.title }}</span>
@@ -17,7 +16,6 @@
               <router-link class="block w-200px" :to="menu.route">{{ menu.title }}</router-link>
             </el-menu-item>
           </template>
-
         </el-menu>
       </div>
       <div class="main flex-grow p-20px">
@@ -25,19 +23,18 @@
       </div>
     </div>
   </ElConfigProvider>
-
 </template>
 <script setup lang="ts">
-import {ElConfigProvider} from "element-plus";
+import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
-import {useRoute} from "vue-router";
-import {computed} from "vue";
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
 type MenuItem = {
-  route?: { name: string },
-  title: string,
-  index: string,
+  route?: { name: string }
+  title: string
+  index: string
   children?: MenuItem[]
 }
 
@@ -47,42 +44,42 @@ const menuList: MenuItem[] = [
     index: '1',
     children: [
       {
-        route: {name: 'home'},
+        route: { name: 'home' },
         title: '页面列表',
-        index: '1-1'
+        index: '1-1',
       },
       {
-        route: {name: 'eventList'},
+        route: { name: 'eventList' },
         title: '模板事件列表',
-        index: '1-2'
+        index: '1-2',
       },
       {
-        route: {name: 'traceParams'},
+        route: { name: 'traceParams' },
         title: '追踪参数',
-        index: '1-4'
+        index: '1-4',
       },
       {
-        route: {name: 'search'},
+        route: { name: 'search' },
         title: '查询',
-        index: '1-3'
-      }
-    ]
+        index: '1-3',
+      },
+    ],
   },
   {
     title: '广告管理',
     index: '2',
-    children: []
+    children: [],
   },
   {
     title: '问卷管理',
     index: '3',
-    children: []
+    children: [],
   },
 ]
 const route = useRoute()
 
 const currentIndex = computed(() => {
-  const menu = menuList.find(menu => menu?.route?.name === route.name)
+  const menu = menuList.find((menu) => menu?.route?.name === route.name)
   return menu && menu.index
 })
 </script>

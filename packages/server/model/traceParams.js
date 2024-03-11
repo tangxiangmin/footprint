@@ -1,31 +1,30 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const TraceParams = mongoose.model("log_meta_trace_params", {
+const TraceParams = mongoose.model('log_meta_trace_params', {
   name: String,
   utmSource: String,
-  utmCampaign: String
-});
-
+  utmCampaign: String,
+})
 
 function findAll() {
-  return TraceParams.find().lean();
+  return TraceParams.find().lean()
 }
 
 function findOne(id) {
-  return TraceParams.findById(id);
+  return TraceParams.findById(id)
 }
 
 function removeOne(id) {
-  return TraceParams.deleteOne({_id: id});
+  return TraceParams.deleteOne({ _id: id })
 }
 
 function updateOne(data) {
-  return TraceParams.updateOne({_id: data._id}, data);
+  return TraceParams.updateOne({ _id: data._id }, data)
 }
 
 function addOne(data) {
-  const row = new TraceParams(data);
-  return row.save();
+  const row = new TraceParams(data)
+  return row.save()
 }
 
 module.exports = {
@@ -34,4 +33,4 @@ module.exports = {
   removeOne,
   updateOne,
   addOne,
-};
+}

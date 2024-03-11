@@ -1,26 +1,29 @@
-import {onMounted, ref, UnwrapRef} from "vue";
-import {ElMessage, ElMessageBox} from "element-plus";
+import { onMounted, ref, UnwrapRef } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 type CurdApi<T> = {
-  getList?: (params: { page: number, pageSize: number, [prop: string]: any }) => Promise<{ total: number, list: T[] }>,
-  add?: Function,
-  edit?: Function,
+  getList?: (params: {
+    page: number
+    pageSize: number
+    [prop: string]: any
+  }) => Promise<{ total: number; list: T[] }>
+  add?: Function
+  edit?: Function
   remove?: Function
 }
 
 type CurdOptions<T> = {
-  immediate?: boolean,
-  api: CurdApi<T>,
-  createTemplateRow: () => T,
-  isTemplateRow: (row: T) => boolean,
+  immediate?: boolean
+  api: CurdApi<T>
+  createTemplateRow: () => T
+  isTemplateRow: (row: T) => boolean
 }
 
-
 export function useCurd<T>(options: CurdOptions<T>) {
-  const {api, immediate = true, createTemplateRow, isTemplateRow} = options
+  const { api, immediate = true, createTemplateRow, isTemplateRow } = options
 
-  const pageSize = ref<number>(10);
-  const page = ref<number>(1);
+  const pageSize = ref<number>(10)
+  const page = ref<number>(1)
 
   const list = ref<T[]>([])
   const total = ref<number>(0)
@@ -30,18 +33,22 @@ export function useCurd<T>(options: CurdOptions<T>) {
 
   async function getList(params: Partial<T> = {} as T) {
     if (!api.getList) return
-    const {total: totalNum, list: data} = await api.getList({...params, page: page.value, pageSize: pageSize.value});
+    const { total: totalNum, list: data } = await api.getList({
+      ...params,
+      page: page.value,
+      pageSize: pageSize.value,
+    })
     list.value = data as UnwrapRef<T[]>
     total.value = totalNum
   }
 
   async function changeCurrent(val: number) {
-    page.value = val;
+    page.value = val
     await getList()
   }
 
   async function changeSize(val: number) {
-    pageSize.value = val;
+    pageSize.value = val
     await getList()
   }
 
@@ -76,19 +83,26 @@ export function useCurd<T>(options: CurdOptions<T>) {
     formDialogVisible.value = false
   }
 
-
   if (immediate) {
     onMounted(() => {
-      getList();
-    });
+      getList()
+    })
   }
 
   return {
-    pageSize, page, list, total,
+    pageSize,
+    page,
+    list,
+    total,
 
-    changeCurrent, changeSize,
+    changeCurrent,
+    changeSize,
     getList,
-    currentRow, formDialogVisible,
-    onAddClick, onEditClick, onRemoveClick, onDialogSaveClick
+    currentRow,
+    formDialogVisible,
+    onAddClick,
+    onEditClick,
+    onRemoveClick,
+    onDialogSaveClick,
   }
 }

@@ -1,27 +1,32 @@
-import {computed, onMounted, onUnmounted} from 'vue'
-import {useRoute} from 'vue-router'
-import {getCurrentTrackTask,} from "@footprintjs/sdk-core";
-import {log} from "@footprintjs/sdk-vue"
+import { computed, onMounted, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { getCurrentTrackTask } from '@footprintjs/sdk-core'
+import { log } from '@footprintjs/sdk-vue'
 
-export * from "@footprintjs/sdk-core"
+export * from '@footprintjs/sdk-core'
 
 const defaultPluginOptions = {
-  directiveName: 'log'
+  directiveName: 'log',
 }
 
 export const VueLogPlugin = {
-  install(app:any, options = defaultPluginOptions) {
+  install(app: any, options = defaultPluginOptions) {
     app.directive(options.directiveName, {
       beforeMount: log.bind,
       updated: log.componentUpdated,
-      unmounted: log.unbind
+      unmounted: log.unbind,
     })
-  }
+  },
+}
+
+const defaultMeta = {
+  pv: false,
+  duration: false,
+  async: false,
 }
 
 export function useTrackTask(extend: object = {}, extra: object = {}) {
-
-  let task = getCurrentTrackTask()
+  const task = getCurrentTrackTask()
   task.setCommonExtend(extend)
   task.setCommonExtra(extra)
 
@@ -30,21 +35,23 @@ export function useTrackTask(extend: object = {}, extra: object = {}) {
   const startTime = +new Date()
 
   const logMeta = computed(() => {
-    if (!route) return {}
-    return route.meta.log as any
+    if (!route) return defaultMeta
+    if (!route.meta) return defaultMeta
+
+    return (route.meta.log || defaultMeta) as {pv:boolean, duration:boolean, async:boolean}
   })
 
   function reportPv() {
-    const {pv, async} = logMeta.value
+    const { pv, async } = logMeta.value
     if (pv && !async) {
       task.trackPv()
     }
   }
 
   function reportDuration() {
-    const {duration} = logMeta.value
+    const { duration } = logMeta.value
     if (duration) {
-      let val = +new Date() - startTime
+      const val = +new Date() - startTime
       task.trackDuration(val)
     }
   }

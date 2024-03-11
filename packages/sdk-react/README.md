@@ -78,6 +78,7 @@ export async function initLog() {
 路由组件中使用埋点
 
 简单场景：自动上报pv和停留
+
 ```tsx
 import {useTrackTask} from "@footprintjs/sdk-react";
 export default function Home() {
@@ -85,7 +86,9 @@ export default function Home() {
   return (<div>Home</div>)
 }
 ```
+
 复杂场景：设置公共参数、同一路由组件参数变化、点击事件
+
 ```tsx
 import {useParams} from 'react-router-dom';
 import {useMemo} from "react";

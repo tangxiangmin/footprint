@@ -1,10 +1,10 @@
 <template>
   <el-form label-width="100px">
     <el-form-item label="名称">
-      <el-input v-model="currentPage.name"/>
+      <el-input v-model="currentPage.name" />
     </el-form-item>
     <el-form-item label="value">
-      <el-input v-model="currentPage.value"/>
+      <el-input v-model="currentPage.value" />
     </el-form-item>
     <el-form-item label="公共参数">
       <meta-list v-model="currentPage.commonParams"></meta-list>
@@ -28,59 +28,59 @@
 </template>
 
 <script lang="ts" setup>
-import {reactive, ref, onMounted, computed} from "vue";
-import metaList from "./metaList.vue";
-import eventConfig from "./eventConfig.vue";
+import { reactive, ref, onMounted, computed } from 'vue'
+import metaList from './metaList.vue'
+import eventConfig from './eventConfig.vue'
 
-import {useMetaStore} from "../../store/meta";
-import {IPage, ITrackEvent} from "../../typings";
-import {useRoute, useRouter} from "vue-router";
-import {ElMessage} from "element-plus";
+import { useMetaStore } from '../../store/meta'
+import { IPage, ITrackEvent } from '../../typings'
+import { useRoute, useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
-const $route = useRoute();
-const $router = useRouter();
-const metaStore = useMetaStore();
+const $route = useRoute()
+const $router = useRouter()
+const metaStore = useMetaStore()
 
 const currentPage = ref<IPage>({
-  name: "",
-  value: "",
+  name: '',
+  value: '',
   commonParams: [],
   eventList: [],
-});
+})
 
 function createTempEvent(): ITrackEvent {
   return {
-    page: "",
-    name: "",
+    page: '',
+    name: '',
     eventType: 1,
-    eventValue: "",
+    eventValue: '',
     commonParams: [],
-  };
+  }
 }
 
 async function submit() {
-  await metaStore.savePageDetail(currentPage.value);
-  ElMessage.success("操作成功");
-  $router.back();
+  await metaStore.savePageDetail(currentPage.value)
+  ElMessage.success('操作成功')
+  $router.back()
 }
 
 async function fetchDetail() {
-  const id = $route.query.id;
+  const id = $route.query.id
   if (id) {
-    const data = await metaStore.fetchPageDetail(id as string);
+    const data = await metaStore.fetchPageDetail(id as string)
     if (data) {
-      currentPage.value = data;
+      currentPage.value = data
     }
   }
 }
 
 async function addPageEvent() {
-  currentPage.value.eventList.push(createTempEvent());
+  currentPage.value.eventList.push(createTempEvent())
 }
 
 onMounted(() => {
-  fetchDetail();
-});
+  fetchDetail()
+})
 </script>
 
 <style scoped lang="scss">

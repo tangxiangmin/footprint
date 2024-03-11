@@ -1,13 +1,21 @@
-import {defineStore} from "pinia";
-import {IPage, ITrackEvent, ITrackEventTemplate} from "../typings";
+import { defineStore } from 'pinia'
+import { IPage, ITrackEvent, ITrackEventTemplate } from '../typings'
 import {
-  getPageList, getPageDetail, addPage, updatePage, removePage,
-  getEventTemplateList, getEventTemplateDetail, addEventTemplate, updateEventTemplate, removeEventTemplate
-} from "../api/meta";
+  getPageList,
+  getPageDetail,
+  addPage,
+  updatePage,
+  removePage,
+  getEventTemplateList,
+  getEventTemplateDetail,
+  addEventTemplate,
+  updateEventTemplate,
+  removeEventTemplate,
+} from '../api/meta'
 
 type MetaStoreStateType = {
-  pageList: IPage[],
-  eventTemplateList: ITrackEventTemplate[],
+  pageList: IPage[]
+  eventTemplateList: ITrackEventTemplate[]
 }
 
 export const useMetaStore = defineStore({
@@ -15,17 +23,17 @@ export const useMetaStore = defineStore({
   state: (): MetaStoreStateType => {
     return {
       pageList: [],
-      eventTemplateList: []
+      eventTemplateList: [],
     }
   },
   actions: {
     // 页面
     async fetchPageList() {
-      const {data} = await getPageList()
+      const { data } = await getPageList()
       this.pageList = data.list
     },
     async fetchPageDetail(id: string) {
-      const {data} = await getPageDetail(id)
+      const { data } = await getPageDetail(id)
       return data
     },
     async savePageDetail(row: IPage) {
@@ -33,13 +41,13 @@ export const useMetaStore = defineStore({
       return id ? updatePage(row) : addPage(row)
     },
     async removePage(row: IPage) {
-      if(row._id){
+      if (row._id) {
         return removePage(row._id)
       }
     },
     // 事件模板
     async fetchEventTemplateList() {
-      const {data} = await getEventTemplateList()
+      const { data } = await getEventTemplateList()
       this.eventTemplateList = data.list
     },
     async saveEventTemplate(row: ITrackEventTemplate) {
@@ -50,9 +58,9 @@ export const useMetaStore = defineStore({
       return getEventTemplateDetail(id)
     },
     async removeEventTemplate(row: ITrackEventTemplate) {
-      if(row._id){
+      if (row._id) {
         return removeEventTemplate(row._id)
       }
     },
-  }
+  },
 })

@@ -1,6 +1,6 @@
-import {init, sendBeacon} from "../../src/index";
-import {routes, route404} from './router'
-import {matchRoutes} from "react-router-dom";
+import { init, sendBeacon } from '../../src/index'
+import { routes, route404 } from './router'
+import { matchRoutes } from 'react-router-dom'
 
 export function getCurrentRoute() {
   // 获取当前路由对应的路由配置
@@ -14,7 +14,7 @@ export async function initLog() {
   const sendLog = (data: any) => {
     data = {
       ...data,
-      eventTime: +new Date()
+      eventTime: +new Date(),
     }
     data.extra = JSON.stringify(data.extra)
 
@@ -27,4 +27,3 @@ export async function initLog() {
     getCurrentRoute,
   })
 }
-

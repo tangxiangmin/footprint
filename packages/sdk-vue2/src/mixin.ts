@@ -1,17 +1,16 @@
 // @ts-nocheck
-import {initPageTrackTask, removePageTrackTask, getCurrentTrackTask} from '@footprintjs/sdk-core'
-
+import { initPageTrackTask, removePageTrackTask, getCurrentTrackTask } from '@footprintjs/sdk-core'
 
 // 路由级别的组件可以上报pv和停留事件
 export default {
   computed: {
     logConfig() {
       return this.$route.meta.log
-    }
+    },
   },
   beforeRouteEnter(to, from, next) {
     initPageTrackTask(to)
-    next(vm => {
+    next((vm) => {
       vm.$$enterTime = +new Date()
       vm._trackPvLog()
     })
@@ -44,7 +43,7 @@ export default {
   methods: {
     // pv埋点
     _trackPvLog() {
-      const {logConfig} = this
+      const { logConfig } = this
       if (!logConfig || !logConfig.pv || logConfig.async) return
 
       const task = getCurrentTrackTask()
@@ -52,7 +51,7 @@ export default {
     },
     // 页面停留埋点，计算页面停留时间
     _trackDurationLog() {
-      const {logConfig} = this
+      const { logConfig } = this
       if (!logConfig || !logConfig.duration) return
 
       const now = +new Date()
@@ -62,6 +61,6 @@ export default {
       task.trackDuration(time)
 
       this.$$enterTime = now
-    }
-  }
+    },
+  },
 }

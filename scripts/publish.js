@@ -14,7 +14,7 @@ async function publish(target) {
   // todo修改patch参数
   await execa(`npm`, ['version', 'patch', '-no-git-tag-version'], options)
   // 使用pnpm，将工作区协议的版本号自动替换
-  await execa(`pnpm`, ['pack'], options)
+  // await execa(`pnpm`, ['pack'], options)
   await execa(`pnpm`, ['publish', '--no-git-checks', '--access', 'public'], options)
 }
 

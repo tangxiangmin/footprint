@@ -3,11 +3,9 @@
 </template>
 
 <script lang="ts" setup>
-import {useTrackTask} from "@footprintjs/sdk-vue3";
+import { useTrackTask } from '@footprintjs/sdk-vue3'
 
 useTrackTask()
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

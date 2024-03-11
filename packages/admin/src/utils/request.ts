@@ -1,8 +1,8 @@
-import axios, {AxiosRequestConfig} from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 
 export interface BaseResponse<T> {
-  code: number,
-  data: T,
+  code: number
+  data: T
   msg: string
 }
 
@@ -22,7 +22,7 @@ function createService(config: AxiosRequestConfig) {
   })
 
   service.interceptors.response.use((response) => {
-    const {data} = response
+    const { data } = response
     const isInValidCode = data.code && data.code !== 200
     if (!isInValidCode) return data
 
@@ -33,9 +33,12 @@ function createService(config: AxiosRequestConfig) {
   return service
 }
 
+export const defaultService = createService({
+  baseURL: 'http://localhost:1546',
+})
 
-export const defaultService = createService({baseURL: 'http://localhost:1546'})
-
-export const editorService = createService({baseURL: 'http://localhost:7001'})
+export const editorService = createService({
+  baseURL: 'http://localhost:7001',
+})
 
 export default defaultService

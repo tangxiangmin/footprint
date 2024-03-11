@@ -1,9 +1,8 @@
-import {createApp} from 'vue'
+import { createApp } from 'vue'
 
 import App from './App.vue'
 import router from './router'
-import {initLog} from "./initLog"
-
+import { initLog } from './initLog'
 
 initLog()
 

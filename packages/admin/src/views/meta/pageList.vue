@@ -11,7 +11,7 @@
     <el-table-column label="事件列表">
       <template v-slot:default="{ row }">
         <el-tag v-for="(item, index) in row.eventList" class="tag-event">
-          {{ item.name || "默认" }}
+          {{ item.name || '默认' }}
           <span v-if="item.eventValue">【{{ item.eventValue }}】</span>
         </el-tag>
       </template>
@@ -26,41 +26,40 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-import { useMetaStore } from "../../store/meta";
+import { useRouter } from 'vue-router'
+import { useMetaStore } from '../../store/meta'
 
-import { IPage } from "../../typings";
-import {computed, onMounted} from "vue";
+import { IPage } from '../../typings'
+import { computed, onMounted } from 'vue'
 
-const router = useRouter();
-const metaStore = useMetaStore();
+const router = useRouter()
+const metaStore = useMetaStore()
 
-const pageList = computed(()=>{
+const pageList = computed(() => {
   return metaStore.pageList
-});
+})
 
-
-onMounted(()=>{
+onMounted(() => {
   metaStore.fetchPageList()
 })
 
 function addPage() {
   router.push({
-    name: "page",
-  });
+    name: 'page',
+  })
 }
 
 function editPage(row: IPage) {
   router.push({
-    name: "page",
+    name: 'page',
     query: {
       id: row._id,
     },
-  });
+  })
 }
 
 function removePage(row: IPage) {
-  metaStore.removePage(row);
+  metaStore.removePage(row)
 }
 </script>
 

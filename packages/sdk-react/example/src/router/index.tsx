@@ -3,15 +3,15 @@ import List from '../views/List'
 import Detail from '../views/Detail'
 
 type RouteMeta = {
-  requiresAuth?: boolean,
+  requiresAuth?: boolean
   log?: any
 }
 
 export type Route = {
-  path: string,
-  exact?: boolean,
-  meta?: RouteMeta,
-  name?: string,
+  path: string
+  exact?: boolean
+  meta?: RouteMeta
+  name?: string
   component: any
 }
 
@@ -19,21 +19,20 @@ const createLogParams = (name: string = '', pv = true, duration = false, async =
   name,
   pv,
   duration,
-  async
+  async,
 })
-
 
 export const route404 = {
   path: '/404',
   name: '404',
   component: () => {
-    return (<div>404</div>)
+    return <div>404</div>
   },
   exact: true,
   meta: {
     log: {
-      pv: false
-    }
+      pv: false,
+    },
   },
 }
 // 售卖页路由
@@ -45,7 +44,7 @@ const routeList: Array<Route> = [
     exact: true,
     meta: {
       requiresAuth: false,
-      log: createLogParams('index')
+      log: createLogParams('index'),
     },
   },
   {
@@ -55,8 +54,8 @@ const routeList: Array<Route> = [
     component: List,
     meta: {
       requiresAuth: false,
-      log: createLogParams('list')
-    }
+      log: createLogParams('list'),
+    },
   },
   {
     path: '/detail/:id',
@@ -65,12 +64,12 @@ const routeList: Array<Route> = [
     component: Detail,
     meta: {
       requiresAuth: false,
-      log: createLogParams('detailPage')
-    }
+      log: createLogParams('detailPage'),
+    },
   },
-  route404
+  route404,
 ]
 
-export const routes = routeList.map(row => {
+export const routes = routeList.map((row) => {
   return row
 })

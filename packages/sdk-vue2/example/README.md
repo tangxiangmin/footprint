@@ -1,13 +1,12 @@
-
-
-
 ## 注意
 
 `vue-template-compiler`会判断当前目录下的vue版本，
+
 ```js
 try {
   var vueVersion = require('vue').version
-} catch (e) {}
+} catch (e) {
+}
 ```
 
 在该monorepo中依赖了多个vue版本，可能导致获取的`vueVersion`错误，
@@ -18,5 +17,6 @@ try {
 try {
   // 显式指定vue版本
   var vueVersion = require('vue').version
-} catch (e) {}
+} catch (e) {
+}
 ```

@@ -1,17 +1,18 @@
-import {useEffect} from 'react'
-import {getCurrentTrackTask, getCurrentRoute} from "@footprintjs/sdk-core"
+// @ts-ignore
+import { useEffect } from 'react'
+import { getCurrentTrackTask, getCurrentRoute } from '@footprintjs/sdk-core'
 
-export * from "@footprintjs/sdk-core"
+export * from '@footprintjs/sdk-core'
 
 // 路由组件每次变化或更新都处理处理上报
 export function useTrackTask(extend: object = {}, extra: object = {}) {
   useEffect(() => {
-    let task = getCurrentTrackTask()
+    const task = getCurrentTrackTask()
     task.setCommonExtend(extend)
     task.setCommonExtra(extra)
 
     const route = getCurrentRoute()
-    const {pv, async, duration} = route.meta.log as any
+    const { pv, async, duration } = route.meta.log as any
 
     const startTime = +new Date()
 
@@ -23,11 +24,10 @@ export function useTrackTask(extend: object = {}, extra: object = {}) {
 
     function reportDuration() {
       if (duration) {
-        let val = +new Date() - startTime
+        const val = +new Date() - startTime
         task.trackDuration(val)
       }
     }
-
 
     reportPv()
 

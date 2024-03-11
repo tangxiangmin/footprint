@@ -1,15 +1,17 @@
 import 'url-search-params-polyfill'
 
-export const EVENT_TYPE = {
-  pv: 1,
-  click: 2,
-  duration: 3,
-  exposure: 4,
-  logic: 5
+export enum EVENT_TYPE {
+  pv = 1,
+  click = 2,
+  duration = 3,
+  exposure = 4,
+  logic = 5,
 }
 
+export type EventValue = string | number
+
 // 像素打点
-export function sendPxPoint(url, params) {
+export function sendPxPoint(url: string, params: any) {
   const img = new Image()
 
   img.style.display = 'none'
@@ -29,27 +31,32 @@ export function sendPxPoint(url, params) {
   document.body.appendChild(img)
 }
 
-
 // 信标埋点
-export function sendBeacon(url, params, customHeaders = {}) {
+export function sendBeacon(url: string, params: any, customHeaders = {}) {
   const data = new URLSearchParams(params)
   const headers = {
     type: 'application/x-www-form-urlencoded',
-    ...customHeaders
+    ...customHeaders,
   }
   // @ts-ignore
   const blob = new Blob([data], headers)
   navigator.sendBeacon(url, blob)
 }
 
-export function initTrackLog({sendLog}) {
-  return function trackLog(page, eventType, eventValue, extend = {}, extra = {}) {
+export function initTrackLog({ sendLog }: { sendLog: Function }) {
+  return function trackLog(
+    page: string,
+    eventType: EVENT_TYPE,
+    eventValue: EventValue,
+    extend = {},
+    extra = {},
+  ) {
     const data = {
       page,
       eventType,
       eventValue,
       ...extend,
-      extra
+      extra,
     }
 
     sendLog(data)

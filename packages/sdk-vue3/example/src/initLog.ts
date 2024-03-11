@@ -1,8 +1,7 @@
-import {init, sendBeacon} from "../../src/index";
+import { init, sendBeacon } from '../../src/index'
 import router from './router'
 
 export async function initLog() {
-
   // const host = 'http://localhost:1546'
   // const reportPostApi = `${host}/log/report`
 
@@ -13,7 +12,7 @@ export async function initLog() {
   const sendLog = (data: any) => {
     data = {
       ...data,
-      eventTime: +new Date()
+      eventTime: +new Date(),
     }
     data.extra = JSON.stringify(data.extra)
 
@@ -26,4 +25,3 @@ export async function initLog() {
     getCurrentRoute,
   })
 }
-

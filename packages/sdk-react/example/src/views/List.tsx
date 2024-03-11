@@ -1,6 +1,6 @@
-import {useTrackTask} from "../../../src";
+import { useTrackTask } from '../../../src'
 
 export default function About() {
   useTrackTask()
-  return (<div>list</div>)
+  return <div>list</div>
 }

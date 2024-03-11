@@ -1,42 +1,42 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router'
 
 import IndexPage from '../views/index.vue'
-import {withLog} from "../../../src/hoc";
+import { trackTaskHoc } from '../../../src/hoc'
 
-const createLogParams = (name: string = '', pv = true, duration = false, async = false) => ({
+const createLogParams = (name = '', pv = true, duration = false, async = false) => ({
   name,
   pv,
   duration,
-  async
+  async,
 })
 const routes = [
   {
     path: '/',
     name: 'index',
-    component: withLog(IndexPage),
+    component: trackTaskHoc(IndexPage),
     meta: {
-      log: createLogParams('index')
-    }
+      log: createLogParams('index'),
+    },
   },
   {
     path: '/list',
     name: 'list',
-    component: withLog(() => import('../views/list.vue')),
+    component: trackTaskHoc(() => import('../views/list.vue')),
     meta: {
-      log: createLogParams('list')
-    }
+      log: createLogParams('list'),
+    },
   },
   {
     path: '/detail/:id',
     name: 'detailPage',
     component: () => import('../views/detail.vue'),
     meta: {
-      log: createLogParams('detailPage')
-    }
+      log: createLogParams('detailPage'),
+    },
   },
 ]
 
 export default createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 })

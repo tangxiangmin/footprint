@@ -1,24 +1,21 @@
-
-
-
 一套便于扩展的埋点工具
 
 ## 使用
 
 ```js
-import {init, getCurrentTrackTask, sendBeacon, sendPxPoint} from "@footprintjs/sdk-core";
+import { init, getCurrentTrackTask, sendBeacon, sendPxPoint } from "@footprintjs/sdk-core";
 
 const getCurrentRoute = () => {
   return router.currentRoute // 每个页面返回一个独立的key即可
 }
 
-const sendLog = (data)=>{
-  data =  {...data, uuid:'xxx'}  // 可以添加一些额外的参数
-  
+const sendLog = (data) => {
+  data = { ...data, uuid: 'xxx' }  // 可以添加一些额外的参数
+
   // 可以自己实现上报的接口
-  if(typeof window.navigator.sendBeacon ==='function'){
+  if (typeof window.navigator.sendBeacon === 'function') {
     return sendBeacon('http://xxx/log_post', data)
-  }else {
+  } else {
     return sendPxPoint('http://xxx/log_get', data)
   }
 }
@@ -35,6 +32,7 @@ trackTask.trackClick('btn-1', {}, {}) // 上报埋点，会自动合并系统级
 ```
 
 目前支持多种框架的埋点
+
 * `@footprintjs/sdk-vue3`
 * `@footprintjs/sdk-vue2`
 * `@footprintjs/sdk-react`

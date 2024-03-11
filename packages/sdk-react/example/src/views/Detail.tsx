@@ -1,6 +1,6 @@
-import {useParams} from 'react-router-dom';
-import {useMemo} from "react";
-import {getCurrentTrackTask, useTrackTask} from "../../../src/index";
+import { useParams } from 'react-router-dom'
+import { useMemo } from 'react'
+import { getCurrentTrackTask, useTrackTask } from '../../../src/index'
 
 export default function Detail() {
   const params = useParams()
@@ -11,7 +11,7 @@ export default function Detail() {
 
   const extra = useMemo(() => {
     return {
-      id: params.id
+      id: params.id,
     }
   }, [params.id])
 
@@ -22,9 +22,10 @@ export default function Detail() {
     trackTask.trackClick('btn-some')
   }
 
-  return (<div>
-    detail {params.id}
-
-    <button onClick={onClick}>click me</button>
-  </div>)
+  return (
+    <div>
+      detail {params.id}
+      <button onClick={onClick}>click me</button>
+    </div>
+  )
 }
