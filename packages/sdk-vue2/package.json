@@ -22,6 +22,10 @@
   "keywords": ["tracking", "analytics", "sdk", "vue2"],
   "author": "",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
     "@footprintjs/sdk-core": "workspace:^1.0.0",
     "@footprintjs/sdk-vue": "workspace:^1.0.0"
