@@ -105,6 +105,9 @@ importers:
       '@footprintjs/sdk-core':
         specifier: workspace:^1.0.0
         version: link:../../sdk-core
+      '@footprintjs/sdk-react':
+        specifier: workspace:^1.0.0
+        version: link:..
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -114,9 +117,6 @@ importers:
       react-router-dom:
         specifier: ^6.28.0
         version: 6.30.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      sdk-react:
-        specifier: workspace:^1.0.0
-        version: link:..
     devDependencies:
       '@types/react':
         specifier: ^18.3.18

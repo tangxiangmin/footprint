@@ -1,5 +1,5 @@
 {
-  "name": "sdk-react",
+  "name": "@footprintjs/sdk-react",
   "version": "1.0.0",
   "description": "footprint 埋点 SDK React 适配：useTrackTask Hook",
   "main": "./dist/index.js",

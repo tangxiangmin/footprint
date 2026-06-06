@@ -14,7 +14,7 @@ footprint
 | [`@footprintjs/sdk-vue`](./packages/sdk-vue) | 通用指令层：`v-log` 点击 / 曝光指令（被 vue2/vue3 复用） |
 | [`@footprintjs/sdk-vue2`](./packages/sdk-vue2) | Vue2 适配：路由 mixin + `v-log` |
 | [`@footprintjs/sdk-vue3`](./packages/sdk-vue3) | Vue3 适配：`useTrackTask` + `v-log` |
-| [`sdk-react`](./packages/sdk-react) | React 适配：`useTrackTask` Hook |
+| [`@footprintjs/sdk-react`](./packages/sdk-react) | React 适配：`useTrackTask` Hook |
 | `packages/server` | 上报接收 / 元数据查询服务（Koa + Mongo） |
 | `packages/admin` | 元数据管理后台 |
 
