@@ -76,18 +76,21 @@ useTrackTask() // 处理页面 pv / 停留埋点
 </script>
 ```
 
-## 发布
+## 发布（手动）
 
-使用 [changesets](https://github.com/changesets/changesets) 管理版本与发布：
+使用 [changesets](https://github.com/changesets/changesets) 管理版本，手动发布到 npm：
 
 ```bash
 pnpm changeset          # 交互式记录本次改动（选包 + 语义版本 + 说明）
 pnpm version-packages   # 消费 changeset，升级版本号并生成 CHANGELOG
-pnpm release            # 构建并 changeset publish 发布到 npm
+pnpm release            # check-registry + build + changeset publish
 ```
 
-CI（`.github/workflows`）：每次 push / PR 跑 lint + test + build；合入 master 后由
-changesets 自动开「Version Packages」PR，合并该 PR 即发布。
+`release` 会强制发到 npm 官方源（各包 `publishConfig.registry`，无视本地 nrm 源）。
+账号开了发布 2FA 时，带 OTP：`pnpm changeset publish --otp=<6位码>`；
+或用 Automation token 免 OTP（写入 `~/.npmrc` 的 `//registry.npmjs.org/:_authToken=`）。
+
+CI（`.github/workflows/ci.yml`）：每次 push / PR 仅跑 lint + test + build，不自动发布。
 
 ## 事件
 
