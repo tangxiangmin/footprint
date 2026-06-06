@@ -1,6 +1,6 @@
 {
   "name": "@footprintjs/sdk-vue3",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "footprint 埋点 SDK Vue3 适配：useTrackTask + v-log 指令",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -14,12 +14,19 @@
     "./package.json": "./package.json"
   },
   "sideEffects": false,
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean --sourcemap",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
   },
-  "keywords": ["tracking", "analytics", "sdk", "vue3"],
+  "keywords": [
+    "tracking",
+    "analytics",
+    "sdk",
+    "vue3"
+  ],
   "author": "",
   "license": "MIT",
   "publishConfig": {
@@ -27,8 +34,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@footprintjs/sdk-core": "workspace:^1.0.0",
-    "@footprintjs/sdk-vue": "workspace:^1.0.0"
+    "@footprintjs/sdk-core": "workspace:^1.1.0",
+    "@footprintjs/sdk-vue": "workspace:^1.1.0"
   },
   "peerDependencies": {
     "vue": "^3.2.25",

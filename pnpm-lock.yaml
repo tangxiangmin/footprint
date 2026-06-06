@@ -30,7 +30,7 @@ importers:
   packages/admin:
     dependencies:
       '@footprintjs/sdk-core':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../sdk-core
       '@vueuse/core':
         specifier: ^8.4.2
@@ -90,7 +90,7 @@ importers:
   packages/sdk-react:
     dependencies:
       '@footprintjs/sdk-core':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../sdk-core
     devDependencies:
       '@types/react':
@@ -103,10 +103,10 @@ importers:
   packages/sdk-react/example:
     dependencies:
       '@footprintjs/sdk-core':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../../sdk-core
       '@footprintjs/sdk-react':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:..
       react:
         specifier: ^18.3.1
@@ -137,7 +137,7 @@ importers:
   packages/sdk-vue:
     dependencies:
       '@footprintjs/sdk-core':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../sdk-core
       intersection-observer:
         specifier: ^0.12.0
@@ -146,10 +146,10 @@ importers:
   packages/sdk-vue2:
     dependencies:
       '@footprintjs/sdk-core':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../sdk-core
       '@footprintjs/sdk-vue':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../sdk-vue
     devDependencies:
       vue:
@@ -162,13 +162,13 @@ importers:
   packages/sdk-vue2/example:
     dependencies:
       '@footprintjs/sdk-core':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../../sdk-core
       '@footprintjs/sdk-vue':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../../sdk-vue
       '@footprintjs/sdk-vue2':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:..
       vue:
         specifier: ^2.7.16
@@ -190,10 +190,10 @@ importers:
   packages/sdk-vue3:
     dependencies:
       '@footprintjs/sdk-core':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../sdk-core
       '@footprintjs/sdk-vue':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../sdk-vue
       vue:
         specifier: ^3.2.25
@@ -205,13 +205,13 @@ importers:
   packages/sdk-vue3/example:
     dependencies:
       '@footprintjs/sdk-core':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../../sdk-core
       '@footprintjs/sdk-vue':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:../../sdk-vue
       '@footprintjs/sdk-vue3':
-        specifier: workspace:^1.0.0
+        specifier: workspace:^1.1.0
         version: link:..
       vue:
         specifier: ^3.5.13

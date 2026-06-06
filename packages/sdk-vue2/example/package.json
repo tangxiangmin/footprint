@@ -8,9 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@footprintjs/sdk-core": "workspace:^1.0.0",
-    "@footprintjs/sdk-vue": "workspace:^1.0.0",
-    "@footprintjs/sdk-vue2": "workspace:^1.0.0",
+    "@footprintjs/sdk-core": "workspace:^1.1.0",
+    "@footprintjs/sdk-vue": "workspace:^1.1.0",
+    "@footprintjs/sdk-vue2": "workspace:^1.1.0",
     "vue": "^2.7.16",
     "vue-router": "^3.6.5"
   },

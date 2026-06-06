@@ -1,6 +1,6 @@
 {
   "name": "@footprintjs/sdk-core",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "footprint 埋点 SDK 核心：页面任务、事件上报、公共参数",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -14,12 +14,18 @@
     "./package.json": "./package.json"
   },
   "sideEffects": false,
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean --sourcemap",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
   },
-  "keywords": ["tracking", "analytics", "sdk"],
+  "keywords": [
+    "tracking",
+    "analytics",
+    "sdk"
+  ],
   "author": "",
   "license": "MIT",
   "publishConfig": {

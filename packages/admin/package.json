@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@footprintjs/sdk-core": "workspace:^1.0.0",
+    "@footprintjs/sdk-core": "workspace:^1.1.0",
     "@vueuse/core": "^8.4.2",
     "axios": "^0.26.1",
     "element-plus": "^2.1.4",
