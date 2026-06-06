@@ -7,9 +7,10 @@ export function trackTaskHoc(routeComponent: any) {
       setup() {
         const attrs = useAttrs()
         useTrackTask()
-        return () => h(comp, {
-          ...attrs,
-        })
+        return () =>
+          h(comp, {
+            ...attrs,
+          })
       },
     })
   }

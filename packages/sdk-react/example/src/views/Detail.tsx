@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom'
 import { useMemo } from 'react'
+import { useParams } from 'react-router-dom'
 import { getCurrentTrackTask, useTrackTask } from '../../../src/index'
 
 export default function Detail() {

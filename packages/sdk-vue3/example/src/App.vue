@@ -22,6 +22,9 @@ const routerKey = computed(() => {
     <li>
       <router-link :to="{ name: 'detailPage', params: { id: 2 } }">detail 2</router-link>
     </li>
+    <li>
+      <router-link :to="{ name: 'exposure' }">exposure 曝光验证</router-link>
+    </li>
   </ul>
   <router-view :key="routerKey"></router-view>
 </template>

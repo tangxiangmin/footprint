@@ -3,9 +3,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
-import { computed } from 'vue'
 import { useTrackTask } from '@footprintjs/sdk-vue3'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
 

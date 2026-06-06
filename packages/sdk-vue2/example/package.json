@@ -1,20 +1,22 @@
 {
-  "name": "example",
+  "name": "example-vue2",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --port 3005",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "typescript": "^4.5.4",
-    "vite": "^2.9.7",
-    "vite-plugin-vue2": "^2.0.0",
-    "vue-template-compiler": "^2.6.14"
-  },
   "dependencies": {
-    "vue": "2.6.14",
-    "vue-router": "3"
+    "@footprintjs/sdk-core": "workspace:^1.0.0",
+    "@footprintjs/sdk-vue": "workspace:^1.0.0",
+    "@footprintjs/sdk-vue2": "workspace:^1.0.0",
+    "vue": "^2.7.16",
+    "vue-router": "^3.6.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue2": "^2.3.3",
+    "typescript": "^5.7.3",
+    "vite": "^5.4.11"
   }
 }

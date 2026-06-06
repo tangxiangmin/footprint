@@ -1,6 +1,6 @@
+import { getCurrentRoute, getCurrentTrackTask } from '@footprintjs/sdk-core'
 // @ts-ignore
 import { useEffect } from 'react'
-import { getCurrentTrackTask, getCurrentRoute } from '@footprintjs/sdk-core'
 
 export * from '@footprintjs/sdk-core'
 

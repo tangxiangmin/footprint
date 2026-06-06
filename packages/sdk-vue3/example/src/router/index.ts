@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import IndexPage from '../views/index.vue'
 import { trackTaskHoc } from '../../../src/hoc'
+import IndexPage from '../views/index.vue'
 
 const createLogParams = (name = '', pv = true, duration = false, async = false) => ({
   name,
@@ -32,6 +32,14 @@ const routes = [
     component: () => import('../views/detail.vue'),
     meta: {
       log: createLogParams('detailPage'),
+    },
+  },
+  {
+    path: '/exposure',
+    name: 'exposure',
+    component: trackTaskHoc(() => import('../views/exposure.vue')),
+    meta: {
+      log: createLogParams('exposure'),
     },
   },
 ]

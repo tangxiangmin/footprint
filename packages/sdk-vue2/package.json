@@ -1,18 +1,25 @@
 {
   "name": "@footprintjs/sdk-vue2",
   "version": "1.0.0",
-  "description": "todo",
-  "main": "lib/index.js",
-  "module": "esm/index.js",
-  "types": "esm/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "footprint 埋点 SDK Vue2 适配：路由 mixin + v-log 指令",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "keywords": [],
-  "files": [
-    "esm",
-    "lib"
-  ],
+  "sideEffects": false,
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean --sourcemap",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+  },
+  "keywords": ["tracking", "analytics", "sdk", "vue2"],
   "author": "",
   "license": "MIT",
   "dependencies": {

@@ -1,7 +1,7 @@
 import Router from 'vue-router'
 import { injectLogMixin } from '../../../src'
 
-const createLogParams = (name: string = '', pv = true, duration = false, async = false) => ({
+const createLogParams = (name = '', pv = true, duration = false, async = false) => ({
   name,
   pv,
   duration,

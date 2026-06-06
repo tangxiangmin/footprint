@@ -1,7 +1,7 @@
-import { Routes, Route, Link, BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 
-import { routes, Route as IRoute } from './router/index'
 import { useEffect, useRef, useState } from 'react'
+import { Route as IRoute, routes } from './router/index'
 
 function RouterViews() {
   return (

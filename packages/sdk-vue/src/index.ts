@@ -16,7 +16,17 @@ const EXPOSURE_DURATION = 100
 
 let observer: IntersectionObserver | undefined
 
-function initObserver() {
+// 惰性初始化：任何消费方（vue2/vue3）只要用到曝光指令就自动建好 observer，
+// 不再依赖各自的 VueLogPlugin 记得调用 initObserver（这是之前 vue3 曝光不上报的根因）。
+function ensureObserver() {
+  if (!observer && typeof window !== 'undefined') {
+    initObserver()
+  }
+  return observer
+}
+
+export function initObserver() {
+  if (observer) return
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -65,9 +75,43 @@ function clickDirective(el: HTMLElement) {
   })
 }
 
+// 延迟到元素真正挂进文档后再 observe。
+// directive 走 beforeMount 触发，此刻 el.isConnected === false；
+// 普通元素同一 tick 内插入文档，IntersectionObserver 仍能补上首次检测，
+// 但 teleport 内容（tippy/弹层）在展示前一直脱离文档，observe 落空 → 永不曝光。
+// 用一个自我销毁的 MutationObserver 等元素连进文档再 observe，无内容时不常驻。
+const pendingExposure = new Set<HTMLElement>()
+let connectObserver: MutationObserver | undefined
+
+function flushPendingExposure() {
+  const ob = ensureObserver()
+  pendingExposure.forEach((el) => {
+    if (el.isConnected) {
+      ob?.observe(el)
+      pendingExposure.delete(el)
+    }
+  })
+  if (pendingExposure.size === 0 && connectObserver) {
+    connectObserver.disconnect()
+    connectObserver = undefined
+  }
+}
+
+function observeWhenConnected(el: HTMLElement) {
+  if (el.isConnected) {
+    ensureObserver()?.observe(el)
+    return
+  }
+  pendingExposure.add(el)
+  if (!connectObserver && typeof MutationObserver !== 'undefined') {
+    connectObserver = new MutationObserver(flushPendingExposure)
+    connectObserver.observe(document.body, { childList: true, subtree: true })
+  }
+}
+
 function exposureDirective(el: HTMLElement) {
   const init = () => {
-    observer?.observe(el)
+    observeWhenConnected(el)
   }
 
   // 图片需要等待加载完毕再进行曝光
@@ -84,6 +128,7 @@ function update(el: HTMLElement, binding: { value: any }) {
 }
 
 function unbind(el: HTMLElement) {
+  pendingExposure.delete(el)
   observer?.unobserve(el)
 }
 

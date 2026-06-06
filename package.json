@@ -1,25 +1,36 @@
 {
   "name": "footprint",
   "version": "1.0.0",
-  "description": "footprint ===",
-  "main": "index.js",
-  "scripts": {
-    "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js",
-    "publish": "node scripts/publish.js"
+  "description": "footprint === 轻量级前端埋点 SDK（core / vue / vue2 / vue3 / react）",
+  "private": true,
+  "packageManager": "pnpm@10.30.1",
+  "engines": {
+    "node": ">=18"
   },
-  "keywords": [],
+  "scripts": {
+    "build": "pnpm -r --filter \"./packages/sdk-*\" run build",
+    "dev": "pnpm -r --parallel --filter \"./packages/sdk-*\" run dev",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "keywords": ["tracking", "analytics", "sdk", "vue", "react"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "eslint": "^7.32.0",
-    "eslint-config-shymean": "^1.0.1",
-    "execa": "5",
-    "minimist": "^1.2.6",
-    "rollup": "^2.75.7",
-    "rollup-plugin-typescript2": "^0.32.1",
-    "typescript": "^4.6.3",
-    "prettier": "^2.8.8"
+    "@biomejs/biome": "^1.9.4",
+    "@changesets/cli": "^2.27.11",
+    "happy-dom": "^15.11.7",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@biomejs/biome", "@parcel/watcher", "esbuild", "vue-demi"]
   }
 }

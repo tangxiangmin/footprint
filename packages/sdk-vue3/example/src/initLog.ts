@@ -17,6 +17,8 @@ export async function initLog() {
     data.extra = JSON.stringify(data.extra)
 
     console.log('send log', data)
+    // 派发到全局，demo 页面可监听并在屏幕上展示上报记录
+    window.dispatchEvent(new CustomEvent('footprint-log', { detail: data }))
     // return sendBeacon(reportPostApi, data)
   }
 

@@ -1,28 +1,33 @@
 {
   "name": "sdk-react",
   "version": "1.0.0",
-  "description": "todo",
-  "main": "index.js",
-  "directories": {
-    "example": "example"
+  "description": "footprint 埋点 SDK React 适配：useTrackTask Hook",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
+  "sideEffects": false,
+  "files": ["dist"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean --sourcemap",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
   },
-  "keywords": [],
-  "files": [
-    "esm",
-    "lib"
-  ],
+  "keywords": ["tracking", "analytics", "sdk", "react"],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@footprintjs/sdk-core": "workspace:^1.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.3.0"
+    "@footprintjs/sdk-core": "workspace:^1.0.0"
   },
   "devDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+    "@types/react": "^18.3.18",
+    "react": "^18.3.1"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"

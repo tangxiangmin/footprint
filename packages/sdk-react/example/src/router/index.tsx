@@ -1,6 +1,6 @@
+import Detail from '../views/Detail'
 import Home from '../views/Home'
 import List from '../views/List'
-import Detail from '../views/Detail'
 
 type RouteMeta = {
   requiresAuth?: boolean
@@ -15,7 +15,7 @@ export type Route = {
   component: any
 }
 
-const createLogParams = (name: string = '', pv = true, duration = false, async = false) => ({
+const createLogParams = (name = '', pv = true, duration = false, async = false) => ({
   name,
   pv,
   duration,

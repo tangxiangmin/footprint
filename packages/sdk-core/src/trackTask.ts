@@ -1,4 +1,4 @@
-import { EVENT_TYPE, EventValue, initTrackLog } from './report'
+import { EVENT_TYPE, type EventValue, initTrackLog } from './report'
 
 type Route = { meta: { log: any }; name?: string }
 type ExtendData = any
@@ -7,7 +7,7 @@ type ExtraData = any
 function getPageName(route: { meta: { log: any }; name?: string }) {
   if (!route) return {}
   const { log: logConfig } = route.meta || {}
-  return (logConfig && logConfig.name) || route.name
+  return logConfig?.name || route.name
 }
 
 function noop() {

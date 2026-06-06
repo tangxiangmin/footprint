@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import router from './router'
 
-import { initLog } from './initLog'
 import { VueLogPlugin } from '../../src'
+import { initLog } from './initLog'
 
 Vue.use(VueRouter)
 Vue.use(VueLogPlugin)

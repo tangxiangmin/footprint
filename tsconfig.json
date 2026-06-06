@@ -1,25 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
     "useDefineForClassFields": false,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
+    "declaration": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "allowJs": true,
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["vitest/globals"],
     "skipLibCheck": true,
     "baseUrl": "."
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts"
-  ]
+  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.d.ts"],
+  "exclude": ["**/node_modules", "**/dist", "**/esm", "**/lib"]
 }

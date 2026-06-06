@@ -1,7 +1,7 @@
-import { computed, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
 import { getCurrentTrackTask } from '@footprintjs/sdk-core'
 import { log } from '@footprintjs/sdk-vue'
+import { computed, onMounted, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
 
 export * from '@footprintjs/sdk-core'
 
@@ -38,7 +38,7 @@ export function useTrackTask(extend: object = {}, extra: object = {}) {
     if (!route) return defaultMeta
     if (!route.meta) return defaultMeta
 
-    return (route.meta.log || defaultMeta) as {pv:boolean, duration:boolean, async:boolean}
+    return (route.meta.log || defaultMeta) as { pv: boolean; duration: boolean; async: boolean }
   })
 
   function reportPv() {

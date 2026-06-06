@@ -1,5 +1,3 @@
-import 'url-search-params-polyfill'
-
 export enum EVENT_TYPE {
   pv = 1,
   click = 2,
@@ -16,7 +14,7 @@ export function sendPxPoint(url: string, params: any) {
 
   img.style.display = 'none'
 
-  const removeImage = function () {
+  const removeImage = () => {
     if (img.parentNode) {
       img.parentNode.removeChild(img)
     }
@@ -49,7 +47,7 @@ export function initTrackLog({ sendLog }: { sendLog: Function }) {
     eventType: EVENT_TYPE,
     eventValue: EventValue,
     extend = {},
-    extra = {},
+    extra = {}
   ) {
     const data = {
       page,

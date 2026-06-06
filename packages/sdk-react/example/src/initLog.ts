@@ -1,6 +1,6 @@
-import { init, sendBeacon } from '../../src/index'
-import { routes, route404 } from './router'
 import { matchRoutes } from 'react-router-dom'
+import { init, sendBeacon } from '../../src/index'
+import { route404, routes } from './router'
 
 export function getCurrentRoute() {
   // 获取当前路由对应的路由配置
