@@ -2,16 +2,92 @@
 footprint
 ===
 
-一套前端埋点、元数据管理、数据查询的解决方案
+一套前端埋点、元数据管理、数据查询的解决方案。
 
-提供了Docker开发环境
+埋点 SDK 采用 pnpm monorepo + tsup 构建，覆盖 core / vue / vue2 / vue3 / react。
+
+## 包结构
+
+| 包 | 说明 |
+| --- | --- |
+| [`@footprintjs/sdk-core`](./packages/sdk-core) | 核心：页面任务、事件上报、公共参数 |
+| [`@footprintjs/sdk-vue`](./packages/sdk-vue) | 通用指令层：`v-log` 点击 / 曝光指令（被 vue2/vue3 复用） |
+| [`@footprintjs/sdk-vue2`](./packages/sdk-vue2) | Vue2 适配：路由 mixin + `v-log` |
+| [`@footprintjs/sdk-vue3`](./packages/sdk-vue3) | Vue3 适配：`useTrackTask` + `v-log` |
+| [`sdk-react`](./packages/sdk-react) | React 适配：`useTrackTask` Hook |
+| `packages/server` | 上报接收 / 元数据查询服务（Koa + Mongo） |
+| `packages/admin` | 元数据管理后台 |
+
+## 本地开发
+
+要求 Node >= 18、pnpm 10。
+
+```bash
+pnpm install          # 安装依赖
+pnpm dev              # 所有 SDK 包 tsup watch 并行构建
+pnpm build            # 构建全部 SDK 包（ESM + CJS + d.ts）
+pnpm test             # Vitest 跑全部单测
+pnpm test:watch       # Vitest watch
+pnpm lint             # Biome 检查
+pnpm lint:fix         # Biome 自动修复
 ```
+
+各 example 独立启动（vite 直接消费 SDK 源码，改源码即时热更）：
+
+```bash
+pnpm --filter example-vue dev     # Vue3 示例，含 /exposure 曝光验证页
+pnpm --filter example-vue2 dev    # Vue2 示例
+pnpm --filter example-react dev   # React 示例
+```
+
+服务端开发环境（Docker）：
+
+```bash
 docker-compose up -d
 ```
 
-## 埋点SDK API
+## SDK 快速使用（Vue3）
 
-移步 [documentation](./packages/sdk/README.md)
+```ts
+// main.ts
+import { createApp } from 'vue'
+import { VueLogPlugin } from '@footprintjs/sdk-vue3'
+import { init } from '@footprintjs/sdk-core'
+
+init({
+  getCurrentRoute: () => router.currentRoute.value,
+  sendLog: (data) => navigator.sendBeacon('/log/report', JSON.stringify(data)),
+})
+
+createApp(App).use(router).use(VueLogPlugin).mount('#app')
+```
+
+```vue
+<template>
+  <!-- 点击上报 -->
+  <button v-log.click="{ key: 'buy', extend: {}, extra: {} }">购买</button>
+  <!-- 曝光上报：元素进视口（≥20% 可见并停留 100ms）即上报，可加 .once 只报一次 -->
+  <div v-log.exposure="{ key: 'banner', extend: {}, extra: {} }">广告位</div>
+</template>
+
+<script setup lang="ts">
+import { useTrackTask } from '@footprintjs/sdk-vue3'
+useTrackTask() // 处理页面 pv / 停留埋点
+</script>
+```
+
+## 发布
+
+使用 [changesets](https://github.com/changesets/changesets) 管理版本与发布：
+
+```bash
+pnpm changeset          # 交互式记录本次改动（选包 + 语义版本 + 说明）
+pnpm version-packages   # 消费 changeset，升级版本号并生成 CHANGELOG
+pnpm release            # 构建并 changeset publish 发布到 npm
+```
+
+CI（`.github/workflows`）：每次 push / PR 跑 lint + test + build；合入 master 后由
+changesets 自动开「Version Packages」PR，合并该 PR 即发布。
 
 ## 事件
 
