@@ -6,3 +6,11 @@ dist/
 esm/
 lib/
 *.tgz
+
+# 凭证 / 密钥 —— 禁止入库
+.npmrc
+**/.npmrc
+.env
+.env.*
+*.pem
+*.key
